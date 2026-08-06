@@ -1,0 +1,63 @@
+Checking sample: INT1
+
+wsi: ../datasets/hest_ccrcc/wsis/INT1.tif
+  exists: True
+  size MB: 305.5
+
+st: ../datasets/hest_ccrcc/st/INT1.h5ad
+  exists: True
+  size MB: 26.51
+
+patches: ../datasets/hest_ccrcc/patches/INT1.h5
+  exists: True
+  size MB: 159.81
+
+metadata: ../datasets/hest_ccrcc/metadata/INT1.json
+  exists: True
+  size MB: 0.0
+
+Checking WSI...
+  number of pages: 8
+  first page shape: (19968, 19200, 3)
+  dtype: uint8
+
+Checking ST h5ad...
+  adata shape: (1084, 36601)
+  obs columns: ['in_tissue', 'array_row', 'array_col', 'pxl_row_in_fullres', 'pxl_col_in_fullres', 'n_genes_by_counts', 'log1p_n_genes_by_counts', 'total_counts', 'log1p_total_counts', 'pct_counts_in_top_50_genes', 'pct_counts_in_top_100_genes', 'pct_counts_in_top_200_genes', 'pct_counts_in_top_500_genes', 'total_counts_mito', 'log1p_total_counts_mito', 'pct_counts_mito']
+  var columns: ['gene_ids', 'feature_types', 'genome', 'mito', 'n_cells_by_counts', 'mean_counts', 'log1p_mean_counts', 'pct_dropout_by_counts', 'total_counts', 'log1p_total_counts']
+  obsm keys: ['spatial']
+  uns keys: ['spatial']
+  spatial coordinates shape: (1084, 2)
+  first 5 spatial coords:
+[[5167 6724]
+ [3072 4207]
+ [2881 4098]
+ [9166 8365]
+ [3262 5192]]
+
+Checking patches h5...
+  keys: ['barcode', 'coords', 'img']
+  barcode: shape=(1032, 1), dtype=object
+  coords: shape=(1032, 2), dtype=int64
+  img: shape=(1032, 224, 224, 3), dtype=uint8
+
+Basic alignment check...
+  number of ST spots/cells: 1084
+  patches file dataset 'barcode' shape: (1032, 1)
+  patches file dataset 'coords' shape: (1032, 2)
+  patches file dataset 'img' shape: (1032, 224, 224, 3)
+
+Checking possible patch/ST matching fields...
+  Found barcode: shape=(1032, 1)
+  Found coords: shape=(1032, 2)
+  adata obs_names example:
+['AAACAGAGCGACTCCT-1', 'AAACCACTACACAGAT-1', 'AAACGACAGTCTTGCC-1', 'AAACGAGACGGTTGAT-1', 'AAACGCCCGAGATCGG-1']
+
+Checking barcode overlap...
+  number of patch barcodes: 1032
+  number of adata obs names: 1084
+  overlap: 1032
+  first 10 patch barcodes: ['AAACAGAGCGACTCCT-1', 'AAACCACTACACAGAT-1', 'AAACGACAGTCTTGCC-1', 'AAACGAGACGGTTGAT-1', 'AAACGCCCGAGATCGG-1', 'AAACGTGTTCGCCCTA-1', 'AAACTCGTGATATAAG-1', 'AAACTGCTGGCTCCAA-1', 'AAAGACATGAAGTTTA-1', 'AAAGGTAAGCTGTACC-1']
+  first 10 overlapping barcodes: ['AAACAGAGCGACTCCT-1', 'AAACCACTACACAGAT-1', 'AAACGACAGTCTTGCC-1', 'AAACGAGACGGTTGAT-1', 'AAACGCCCGAGATCGG-1', 'AAACGTGTTCGCCCTA-1', 'AAACTCGTGATATAAG-1', 'AAACTGCTGGCTCCAA-1', 'AAAGACATGAAGTTTA-1', 'AAAGGTAAGCTGTACC-1']
+
+Done.

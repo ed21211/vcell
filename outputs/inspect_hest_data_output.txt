@@ -1,0 +1,140 @@
+
+Loaded metadata: 1276 rows, 28 columns
+Columns: ['dataset_title', 'id', 'image_filename', 'organ', 'disease_state', 'oncotree_code', 'species', 'patient', 'st_technology', 'data_publication_date', 'license', 'study_link', 'download_page_link1', 'inter_spot_dist', 'spot_diameter', 'spots_under_tissue', 'preservation_method', 'nb_genes', 'treatment_comment', 'pixel_size_um_embedded', 'pixel_size_um_estimated', 'magnification', 'fullres_px_width', 'fullres_px_height', 'tissue', 'disease_comment', 'subseries', 'hest_version_added']
+
+--- value_counts for 'organ' ---
+organ
+Spinal cord       318
+Brain             214
+Breast            140
+Bowel              95
+Skin               88
+Lung               72
+Kidney             72
+Heart              70
+Prostate           63
+Liver              37
+Uterus             24
+Eye                10
+Bone               10
+Muscle             10
+Ovary              10
+Pancreas            9
+Lymphoid            8
+Cervix              6
+Bladder             6
+Lymph node          5
+Embryo              3
+Lung/Brain          2
+Kidney/Brain        1
+Whole organism      1
+Placenta            1
+Other               1
+Name: count, dtype: int64
+
+--- value_counts for 'tissue' ---
+tissue
+Spinal cord                             318
+Brain                                   150
+Breast                                  140
+Skin                                     84
+Kidney                                   69
+                                       ... 
+Whole organism                            1
+Femur bone                                1
+Prelaryngeal lymph node                   1
+FFPE bladder tumor                        1
+Foriegn body granuloma, Sponge_2 wks      1
+Name: count, Length: 71, dtype: int64
+
+--- value_counts for 'oncotree_code' ---
+oncotree_code
+IDC         139
+COAD         59
+SCCRCC       24
+EPM          14
+CSCC         12
+LIHB         10
+PRAD         10
+LUAD          9
+PAAD          7
+SKCM          6
+BLCA          6
+SOC           5
+MEL           5
+HGSOC         4
+GBM           4
+READ          4
+ILC           4
+HCC           3
+UNKNOWN       2
+COADREAD      2
+TODO          1
+CCOV          1
+PDAC          1
+CESC          1
+PRCC          1
+ALL           1
+LUSC          1
+LNET          1
+ACYC          1
+Name: count, dtype: int64
+
+--- value_counts for 'disease_state' ---
+disease_state
+Diseased                       454
+Cancer                         398
+Healthy                        359
+Treated                         53
+Tumor                            7
+Genetically modified             4
+Cancer/Genetically modified      1
+Name: count, dtype: int64
+
+--- value_counts for 'dataset_title' ---
+dataset_title
+Spatiotemporal dynamics of molecular pathology in amyotrophic lateral sclerosis                                                            302
+Molecular Atlas of the Adult Mouse Brain                                                                                                    75
+Integrating spatial gene expression and breast tumour morphology via deep learning                                                          68
+Spatial transcriptomics landscape of non-communicable inflammatory skin diseases                                                            59
+Spatially resolved multiomics of human cardiac niches                                                                                       41
+                                                                                                                                          ... 
+Human Breast Cancer (Block A Section 2)                                                                                                      1
+Human Breast Cancer (Block A Section 1)                                                                                                      1
+High resolution mapping of the tumor microenvironment using integrated single-cell, spatial and in situ analysis [scRNA-seq and Visium]      1
+Spatial sequencing of Foreign body granuloma                                                                                                 1
+Epithelial Plasticity and Innate Immune Activation Promote Lung Tissue Remodeling following Respiratory Viral Infection.                     1
+Name: count, Length: 180, dtype: int64
+
+=== ccRCC (SCCRCC + PRCC) ===
+
+Found 25 rows matching oncotree_code in ['SCCRCC', 'PRCC']
+          id   organ  tissue oncotree_code st_technology     patient
+199  TENX105  Kidney  Kidney          PRCC        Xenium         NaN
+426    INT24  Kidney  Kidney        SCCRCC        Visium   Patient 1
+427    INT23  Kidney  Kidney        SCCRCC        Visium   Patient 2
+428    INT22  Kidney  Kidney        SCCRCC        Visium   Patient 3
+429    INT21  Kidney  Kidney        SCCRCC        Visium   Patient 4
+430    INT20  Kidney  Kidney        SCCRCC        Visium   Patient 5
+431    INT19  Kidney  Kidney        SCCRCC        Visium   Patient 6
+432    INT18  Kidney  Kidney        SCCRCC        Visium   Patient 7
+433    INT17  Kidney  Kidney        SCCRCC        Visium   Patient 8
+434    INT16  Kidney  Kidney        SCCRCC        Visium   Patient 9
+435    INT15  Kidney  Kidney        SCCRCC        Visium  Patient 10
+436    INT14  Kidney  Kidney        SCCRCC        Visium  Patient 11
+437    INT13  Kidney  Kidney        SCCRCC        Visium  Patient 12
+438    INT12  Kidney  Kidney        SCCRCC        Visium  Patient 13
+439    INT11  Kidney  Kidney        SCCRCC        Visium  Patient 14
+440    INT10  Kidney  Kidney        SCCRCC        Visium  Patient 15
+441     INT9  Kidney  Kidney        SCCRCC        Visium  Patient 16
+442     INT8  Kidney  Kidney        SCCRCC        Visium  Patient 17
+443     INT7  Kidney  Kidney        SCCRCC        Visium  Patient 18
+444     INT6  Kidney  Kidney        SCCRCC        Visium  Patient 19
+445     INT5  Kidney  Kidney        SCCRCC        Visium  Patient 20
+446     INT4  Kidney  Kidney        SCCRCC        Visium  Patient 21
+447     INT3  Kidney  Kidney        SCCRCC        Visium  Patient 22
+448     INT2  Kidney  Kidney        SCCRCC        Visium  Patient 23
+449     INT1  Kidney  Kidney        SCCRCC        Visium  Patient 24
+Saved to /media/bml/DATA2/Elsa/vcell/scripts/../datasets/hest_metadata/ccrcc_samples.csv
+
+SUMMARY: ccRCC=25 samples

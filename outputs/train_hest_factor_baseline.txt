@@ -1,0 +1,35 @@
+Loading joined HEST ccRCC dataset...
+X: (73813, 2560)
+y: (73813, 4)
+metadata: (73813, 10)
+factors: ['t_cell_infiltration' 'cytotoxicity' 'tgfb_caf' 'proliferation']
+
+Split sizes:
+Train: 45981 ['INT1', 'INT2', 'INT3', 'INT4', 'INT5', 'INT6', 'INT7', 'INT8', 'INT9', 'INT10', 'INT11', 'INT12', 'INT13', 'INT14', 'INT15', 'INT16', 'INT17', 'INT18']
+Val: 14768 ['INT19', 'INT20', 'INT21']
+Test: 13064 ['INT22', 'INT23', 'INT24']
+
+Standardising X and y using training split only...
+Training Ridge regression baseline...
+Predicting...
+
+Results:
+    split               factor       mse  ...        r2   pearson  spearman
+0   train  t_cell_infiltration  0.036361  ...  0.337424  0.580968  0.483002
+1   train         cytotoxicity  0.041112  ...  0.251064  0.501194  0.414642
+2   train             tgfb_caf  0.089385  ...  0.725666  0.851868  0.857564
+3   train        proliferation  0.028396  ...  0.152775  0.391031  0.366004
+4     val  t_cell_infiltration  0.055519  ... -0.398965  0.129512  0.103326
+5     val         cytotoxicity  0.058481  ... -0.205071  0.108581  0.109906
+6     val             tgfb_caf  0.286694  ...  0.319156  0.628643  0.649907
+7     val        proliferation  0.034017  ... -0.343800  0.038945  0.045756
+8    test  t_cell_infiltration  0.068082  ... -0.288890  0.229219  0.250270
+9    test         cytotoxicity  0.059018  ... -0.042549  0.226874  0.237069
+10   test             tgfb_caf  0.176754  ...  0.106854  0.517202  0.481050
+11   test        proliferation  0.048054  ... -0.300494  0.160934  0.157197
+
+[12 rows x 7 columns]
+
+Saved metrics: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/ridge_baseline_metrics.csv
+Saved predictions: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/ridge_baseline_predictions.csv
+Saved model: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/ridge_baseline_model.joblib

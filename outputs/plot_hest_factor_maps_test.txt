@@ -1,0 +1,18 @@
+Loading predictions from: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/ridge_baseline_predictions.csv
+Columns: ['sample_id', 'barcode', 'patch_x', 'patch_y', 'spatial_x', 'spatial_y', 't_cell_infiltration', 'cytotoxicity', 'tgfb_caf', 'proliferation', 'split', 'true_t_cell_infiltration', 'pred_t_cell_infiltration', 'true_cytotoxicity', 'pred_cytotoxicity', 'true_tgfb_caf', 'pred_tgfb_caf', 'true_proliferation', 'pred_proliferation']
+Shape: (73813, 19)
+Samples to plot: ['INT22', 'INT23', 'INT24']
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT22_t_cell_infiltration_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT22_cytotoxicity_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT22_tgfb_caf_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT22_proliferation_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT23_t_cell_infiltration_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT23_cytotoxicity_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT23_tgfb_caf_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT23_proliferation_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT24_t_cell_infiltration_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT24_cytotoxicity_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT24_tgfb_caf_true_vs_pred.png
+Saved: /media/bml/DATA2/Elsa/vcell/outputs/hest_factor_baseline/maps/INT24_proliferation_true_vs_pred.png
+
+Done.

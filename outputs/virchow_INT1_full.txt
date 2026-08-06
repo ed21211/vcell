@@ -1,0 +1,17 @@
+/media/bml/DATA2/Elsa/venv/lib/python3.11/site-packages/torch/cuda/__init__.py:716: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+Device: cuda
+Samples to process: ['INT1']
+Loading Virchow model: hf_hub:paige-ai/Virchow2
+Model loaded.
+Transform config: {'input_size': [3, 224, 224], 'interpolation': 'bicubic', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225], 'crop_pct': 1.0, 'crop_mode': 'center'}
+
+Processing sample: INT1
+Patch file: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT1.h5
+Total patches: 1032
+Using patches: 1032
+Image shape: (224, 224, 3)
+INT1:   0%|          | 0/33 [00:00<?, ?it/s]INT1:   3%|▎         | 1/33 [00:00<00:20,  1.57it/s]INT1:   6%|▌         | 2/33 [00:01<00:16,  1.87it/s]INT1:   9%|▉         | 3/33 [00:01<00:15,  1.96it/s]INT1:  12%|█▏        | 4/33 [00:02<00:14,  2.02it/s]INT1:  15%|█▌        | 5/33 [00:02<00:13,  2.05it/s]INT1:  18%|█▊        | 6/33 [00:03<00:13,  2.07it/s]INT1:  21%|██        | 7/33 [00:03<00:12,  2.08it/s]INT1:  24%|██▍       | 8/33 [00:03<00:11,  2.10it/s]INT1:  27%|██▋       | 9/33 [00:04<00:11,  2.12it/s]INT1:  30%|███       | 10/33 [00:04<00:10,  2.12it/s]INT1:  33%|███▎      | 11/33 [00:05<00:10,  2.09it/s]INT1:  36%|███▋      | 12/33 [00:05<00:09,  2.11it/s]INT1:  39%|███▉      | 13/33 [00:06<00:09,  2.12it/s]INT1:  42%|████▏     | 14/33 [00:06<00:08,  2.12it/s]INT1:  45%|████▌     | 15/33 [00:07<00:08,  2.13it/s]INT1:  48%|████▊     | 16/33 [00:07<00:08,  2.11it/s]INT1:  52%|█████▏    | 17/33 [00:08<00:07,  2.12it/s]INT1:  55%|█████▍    | 18/33 [00:08<00:07,  2.13it/s]INT1:  58%|█████▊    | 19/33 [00:09<00:06,  2.14it/s]INT1:  61%|██████    | 20/33 [00:09<00:06,  2.13it/s]INT1:  64%|██████▎   | 21/33 [00:10<00:05,  2.12it/s]INT1:  67%|██████▋   | 22/33 [00:10<00:05,  2.12it/s]INT1:  70%|██████▉   | 23/33 [00:11<00:04,  2.10it/s]INT1:  73%|███████▎  | 24/33 [00:11<00:04,  2.11it/s]INT1:  76%|███████▌  | 25/33 [00:11<00:03,  2.12it/s]INT1:  79%|███████▉  | 26/33 [00:12<00:03,  2.13it/s]INT1:  82%|████████▏ | 27/33 [00:12<00:02,  2.12it/s]INT1:  85%|████████▍ | 28/33 [00:13<00:02,  2.11it/s]INT1:  88%|████████▊ | 29/33 [00:13<00:01,  2.07it/s]INT1:  91%|█████████ | 30/33 [00:14<00:01,  2.08it/s]INT1:  94%|█████████▍| 31/33 [00:14<00:00,  2.09it/s]INT1:  97%|█████████▋| 32/33 [00:15<00:00,  2.09it/s]INT1: 100%|██████████| 33/33 [00:15<00:00,  2.67it/s]INT1: 100%|██████████| 33/33 [00:15<00:00,  2.14it/s]
+Saved embeddings: /media/bml/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT1_virchow.npz
+Saved barcodes:   /media/bml/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT1_barcodes.csv
+Embedding shape:  (1032, 2560)

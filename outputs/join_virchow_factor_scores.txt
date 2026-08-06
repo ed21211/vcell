@@ -1,0 +1,139 @@
+Loading factor scores...
+Factor table: (74220, 8)
+  sample_id             barcode  ...  tgfb_caf  proliferation
+0      INT1  AAACAGAGCGACTCCT-1  ...  0.612598      -0.167058
+1      INT1  AAACCACTACACAGAT-1  ...  0.315746       0.440550
+2      INT1  AAACGACAGTCTTGCC-1  ...  0.790063       0.298626
+3      INT1  AAACGAGACGGTTGAT-1  ...  0.925799       0.170545
+4      INT1  AAACGCCCGAGATCGG-1  ...  1.492832      -0.040126
+
+[5 rows x 8 columns]
+
+Found 24 Virchow files
+
+Processing INT10
+Embeddings: (1971, 2560)
+Factor rows: (1983, 8)
+Matched rows: (1971, 11)
+
+Processing INT11
+Embeddings: (1400, 2560)
+Factor rows: (1439, 8)
+Matched rows: (1400, 11)
+
+Processing INT12
+Embeddings: (1450, 2560)
+Factor rows: (1451, 8)
+Matched rows: (1450, 11)
+
+Processing INT13
+Embeddings: (4359, 2560)
+Factor rows: (4359, 8)
+Matched rows: (4359, 11)
+
+Processing INT14
+Embeddings: (4559, 2560)
+Factor rows: (4562, 8)
+Matched rows: (4559, 11)
+
+Processing INT15
+Embeddings: (4940, 2560)
+Factor rows: (4940, 8)
+Matched rows: (4940, 11)
+
+Processing INT16
+Embeddings: (3202, 2560)
+Factor rows: (3206, 8)
+Matched rows: (3202, 11)
+
+Processing INT17
+Embeddings: (3584, 2560)
+Factor rows: (3585, 8)
+Matched rows: (3584, 11)
+
+Processing INT18
+Embeddings: (4914, 2560)
+Factor rows: (4915, 8)
+Matched rows: (4914, 11)
+
+Processing INT19
+Embeddings: (4948, 2560)
+Factor rows: (4948, 8)
+Matched rows: (4948, 11)
+
+Processing INT1
+Embeddings: (1032, 2560)
+Factor rows: (1084, 8)
+Matched rows: (1032, 11)
+
+Processing INT20
+Embeddings: (4860, 2560)
+Factor rows: (4860, 8)
+Matched rows: (4860, 11)
+
+Processing INT21
+Embeddings: (4960, 2560)
+Factor rows: (4975, 8)
+Matched rows: (4960, 11)
+
+Processing INT22
+Embeddings: (3826, 2560)
+Factor rows: (3829, 8)
+Matched rows: (3826, 11)
+
+Processing INT23
+Embeddings: (4755, 2560)
+Factor rows: (4755, 8)
+Matched rows: (4755, 11)
+
+Processing INT24
+Embeddings: (4483, 2560)
+Factor rows: (4510, 8)
+Matched rows: (4483, 11)
+
+Processing INT2
+Embeddings: (2541, 2560)
+Factor rows: (2580, 8)
+Matched rows: (2541, 11)
+
+Processing INT3
+Embeddings: (1973, 2560)
+Factor rows: (2007, 8)
+Matched rows: (1973, 11)
+
+Processing INT4
+Embeddings: (1255, 2560)
+Factor rows: (1349, 8)
+Matched rows: (1255, 11)
+
+Processing INT5
+Embeddings: (1158, 2560)
+Factor rows: (1186, 8)
+Matched rows: (1158, 11)
+
+Processing INT6
+Embeddings: (1667, 2560)
+Factor rows: (1678, 8)
+Matched rows: (1667, 11)
+
+Processing INT7
+Embeddings: (2361, 2560)
+Factor rows: (2374, 8)
+Matched rows: (2361, 11)
+
+Processing INT8
+Embeddings: (1924, 2560)
+Factor rows: (1949, 8)
+Matched rows: (1924, 11)
+
+Processing INT9
+Embeddings: (1691, 2560)
+Factor rows: (1696, 8)
+Matched rows: (1691, 11)
+
+DONE
+X: (73813, 2560)
+y: (73813, 4)
+metadata: (73813, 10)
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_dataset.npz
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_metadata.csv

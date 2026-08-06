@@ -1,0 +1,172 @@
+Found 24 ST files
+
+Processing INT1: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT1.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT1_factor_scores.csv
+
+Processing INT10: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT10.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT10_factor_scores.csv
+
+Processing INT11: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT11.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT11_factor_scores.csv
+
+Processing INT12: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT12.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT12_factor_scores.csv
+
+Processing INT13: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT13.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT13_factor_scores.csv
+
+Processing INT14: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT14.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT14_factor_scores.csv
+
+Processing INT15: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT15.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT15_factor_scores.csv
+
+Processing INT16: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT16.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT16_factor_scores.csv
+
+Processing INT17: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT17.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT17_factor_scores.csv
+
+Processing INT18: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT18.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT18_factor_scores.csv
+
+Processing INT19: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT19.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT19_factor_scores.csv
+
+Processing INT2: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT2.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT2_factor_scores.csv
+
+Processing INT20: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT20.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT20_factor_scores.csv
+
+Processing INT21: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT21.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT21_factor_scores.csv
+
+Processing INT22: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT22.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT22_factor_scores.csv
+
+Processing INT23: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT23.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT23_factor_scores.csv
+
+Processing INT24: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT24.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT24_factor_scores.csv
+
+Processing INT3: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT3.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT3_factor_scores.csv
+
+Processing INT4: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT4.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT4_factor_scores.csv
+
+Processing INT5: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT5.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT5_factor_scores.csv
+
+Processing INT6: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT6.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT6_factor_scores.csv
+
+Processing INT7: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT7.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT7_factor_scores.csv
+
+Processing INT8: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT8.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT8_factor_scores.csv
+
+Processing INT9: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/st/INT9.h5ad
+t_cell_infiltration: 5/5 genes present: ['CD3D', 'CD3E', 'CD2', 'CD8A', 'CD8B']
+cytotoxicity: 4/4 genes present: ['GZMB', 'PRF1', 'NKG7', 'GNLY']
+tgfb_caf: 5/6 genes present: ['TGFB1', 'COL1A1', 'COL1A2', 'FAP', 'ACTA2']
+proliferation: 5/5 genes present: ['MKI67', 'TOP2A', 'PCNA', 'MCM2', 'MCM5']
+Saved: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/INT9_factor_scores.csv
+
+Saved combined factor scores: /media/bml/DATA2/Elsa/vcell/features/hest_factor_scores/all_hest_ccrcc_factor_scores.csv
+(74220, 8)

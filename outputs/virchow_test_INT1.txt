@@ -1,0 +1,17 @@
+/media/bml/DATA2/Elsa/venv/lib/python3.11/site-packages/torch/cuda/__init__.py:716: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+Device: cuda
+Samples to process: ['INT1']
+Loading Virchow model: hf_hub:paige-ai/Virchow2
+Model loaded.
+Transform config: {'input_size': [3, 224, 224], 'interpolation': 'bicubic', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225], 'crop_pct': 1.0, 'crop_mode': 'center'}
+
+Processing sample: INT1
+Patch file: /media/bml/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT1.h5
+Total patches: 1032
+Using patches: 32
+Image shape: (224, 224, 3)
+INT1:   0%|          | 0/8 [00:00<?, ?it/s]INT1:  12%|█▎        | 1/8 [00:00<00:01,  3.61it/s]INT1:  38%|███▊      | 3/8 [00:00<00:00,  7.16it/s]INT1:  62%|██████▎   | 5/8 [00:00<00:00,  8.79it/s]INT1:  88%|████████▊ | 7/8 [00:00<00:00, 10.38it/s]INT1: 100%|██████████| 8/8 [00:00<00:00,  9.34it/s]
+Saved embeddings: /media/bml/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT1_virchow.npz
+Saved barcodes:   /media/bml/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT1_barcodes.csv
+Embedding shape:  (32, 2560)

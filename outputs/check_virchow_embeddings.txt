@@ -1,0 +1,147 @@
+Found 24 embedding files
+
+ INT10_virchow.npz
+sample_id: INT10
+embeddings: (1971, 2560)
+barcodes: (1971,)
+coords: (1971, 2)
+
+ INT11_virchow.npz
+sample_id: INT11
+embeddings: (1400, 2560)
+barcodes: (1400,)
+coords: (1400, 2)
+
+ INT12_virchow.npz
+sample_id: INT12
+embeddings: (1450, 2560)
+barcodes: (1450,)
+coords: (1450, 2)
+
+ INT13_virchow.npz
+sample_id: INT13
+embeddings: (4359, 2560)
+barcodes: (4359,)
+coords: (4359, 2)
+
+ INT14_virchow.npz
+sample_id: INT14
+embeddings: (4559, 2560)
+barcodes: (4559,)
+coords: (4559, 2)
+
+ INT15_virchow.npz
+sample_id: INT15
+embeddings: (4940, 2560)
+barcodes: (4940,)
+coords: (4940, 2)
+
+ INT16_virchow.npz
+sample_id: INT16
+embeddings: (3202, 2560)
+barcodes: (3202,)
+coords: (3202, 2)
+
+ INT17_virchow.npz
+sample_id: INT17
+embeddings: (3584, 2560)
+barcodes: (3584,)
+coords: (3584, 2)
+
+ INT18_virchow.npz
+sample_id: INT18
+embeddings: (4914, 2560)
+barcodes: (4914,)
+coords: (4914, 2)
+
+ INT19_virchow.npz
+sample_id: INT19
+embeddings: (4948, 2560)
+barcodes: (4948,)
+coords: (4948, 2)
+
+ INT1_virchow.npz
+sample_id: INT1
+embeddings: (32, 2560)
+barcodes: (32,)
+coords: (32, 2)
+
+ INT20_virchow.npz
+sample_id: INT20
+embeddings: (4860, 2560)
+barcodes: (4860,)
+coords: (4860, 2)
+
+ INT21_virchow.npz
+sample_id: INT21
+embeddings: (4960, 2560)
+barcodes: (4960,)
+coords: (4960, 2)
+
+ INT22_virchow.npz
+sample_id: INT22
+embeddings: (3826, 2560)
+barcodes: (3826,)
+coords: (3826, 2)
+
+ INT23_virchow.npz
+sample_id: INT23
+embeddings: (4755, 2560)
+barcodes: (4755,)
+coords: (4755, 2)
+
+ INT24_virchow.npz
+sample_id: INT24
+embeddings: (4483, 2560)
+barcodes: (4483,)
+coords: (4483, 2)
+
+ INT2_virchow.npz
+sample_id: INT2
+embeddings: (2541, 2560)
+barcodes: (2541,)
+coords: (2541, 2)
+
+ INT3_virchow.npz
+sample_id: INT3
+embeddings: (1973, 2560)
+barcodes: (1973,)
+coords: (1973, 2)
+
+ INT4_virchow.npz
+sample_id: INT4
+embeddings: (1255, 2560)
+barcodes: (1255,)
+coords: (1255, 2)
+
+ INT5_virchow.npz
+sample_id: INT5
+embeddings: (1158, 2560)
+barcodes: (1158,)
+coords: (1158, 2)
+
+ INT6_virchow.npz
+sample_id: INT6
+embeddings: (1667, 2560)
+barcodes: (1667,)
+coords: (1667, 2)
+
+ INT7_virchow.npz
+sample_id: INT7
+embeddings: (2361, 2560)
+barcodes: (2361,)
+coords: (2361, 2)
+
+ INT8_virchow.npz
+sample_id: INT8
+embeddings: (1924, 2560)
+barcodes: (1924,)
+coords: (1924, 2)
+
+ INT9_virchow.npz
+sample_id: INT9
+embeddings: (1691, 2560)
+barcodes: (1691,)
+coords: (1691, 2)
+
+All embedding files look consistent.
