@@ -257,9 +257,6 @@ def summarize_all_cancers(df):
     print("\n=== All cancer types ===")
     print(pivot_df.to_string(index=False))
 
-    print("\n=== All cancer types ===")
-    print(pivot_df.to_string(index=False))
-
     if technology_column:
         technology_summary = (
             working_df.groupby(
