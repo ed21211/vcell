@@ -21,65 +21,117 @@ GENE_SETS = {
 
 
 def main():
-    h5ad_files = sorted(ST_DIR.glob("INT*.h5ad"))
+    h5ad_files = sorted(
+        ST_DIR.glob("INT*.h5ad"),
+        key=lambda path: int(path.stem.replace("INT", "")),
+    )
 
-    print(f"Found {len(h5ad_files)} ST files")
+    print(f"Found {len(h5ad_files)} ST files", flush=True)
 
-    all_rows = []
+    completed_files = []
 
     for path in h5ad_files:
         sample_id = path.stem
-        print(f"\nProcessing {sample_id}: {path}")
+        out_csv = OUT_DIR / f"{sample_id}_factor_scores.csv"
 
+        # Avoid recomputing completed samples.
+        if out_csv.exists():
+            print(f"\nSkipping {sample_id}: output already exists", flush=True)
+            completed_files.append(out_csv)
+            continue
+
+        print(f"\nLoading {sample_id}: {path}", flush=True)
+
+        # Reading the sparse expression matrix can take some time.
         adata = ad.read_h5ad(path)
 
-        # ensure gene names are unique just in case
+        print(
+            f"Loaded {sample_id}: "
+            f"{adata.n_obs:,} spots × {adata.n_vars:,} genes",
+            flush=True,
+        )
+
         adata.var_names_make_unique()
 
-        # Normalise/log
-        adata_pp = adata.copy()
-        sc.pp.normalize_total(adata_pp, target_sum=1e4)
-        sc.pp.log1p(adata_pp)
+        # Process in place instead of making a full copy.
+        print("Normalising counts...", flush=True)
+        sc.pp.normalize_total(adata, target_sum=1e4)
 
-        rows = pd.DataFrame(index=adata_pp.obs_names)
-        rows["sample_id"] = sample_id
-        rows["barcode"] = adata_pp.obs_names.astype(str)
+        print("Applying log1p...", flush=True)
+        sc.pp.log1p(adata)
 
-        if "spatial" in adata_pp.obsm:
-            rows["spatial_x"] = adata_pp.obsm["spatial"][:, 0]
-            rows["spatial_y"] = adata_pp.obsm["spatial"][:, 1]
+        rows = pd.DataFrame(
+            {
+                "sample_id": sample_id,
+                "barcode": adata.obs_names.astype(str),
+            }
+        )
+
+        if "spatial" in adata.obsm:
+            rows["spatial_x"] = adata.obsm["spatial"][:, 0]
+            rows["spatial_y"] = adata.obsm["spatial"][:, 1]
 
         for score_name, genes in GENE_SETS.items():
-            present = [g for g in genes if g in adata_pp.var_names]
+            present = [
+                gene for gene in genes
+                if gene in adata.var_names
+            ]
 
-            print(f"{score_name}: {len(present)}/{len(genes)} genes present: {present}")
+            print(
+                f"{score_name}: "
+                f"{len(present)}/{len(genes)} genes present: "
+                f"{present}",
+                flush=True,
+            )
 
-            if len(present) == 0:
+            if not present:
                 rows[score_name] = np.nan
                 continue
 
             sc.tl.score_genes(
-                adata_pp,
+                adata,
                 gene_list=present,
                 score_name=score_name,
                 use_raw=False,
+                random_state=0,
             )
 
-            rows[score_name] = adata_pp.obs[score_name].values
+            rows[score_name] = adata.obs[score_name].to_numpy()
 
-        out_csv = OUT_DIR / f"{sample_id}_factor_scores.csv"
         rows.to_csv(out_csv, index=False)
-        print(f"Saved: {out_csv}")
+        completed_files.append(out_csv)
 
-        all_rows.append(rows.reset_index(drop=True))
+        print(f"Saved: {out_csv}", flush=True)
+
+        # Release memory before loading the next sample.
+        del rows
+        del adata
+
+        import gc
+        gc.collect()
+
+    print("\nCombining completed sample files...", flush=True)
+
+    all_rows = [
+        pd.read_csv(path)
+        for path in completed_files
+        if path.exists()
+    ]
+
+    if not all_rows:
+        raise RuntimeError("No factor-score files were produced.")
 
     combined = pd.concat(all_rows, ignore_index=True)
-    combined_out = OUT_DIR / "all_hest_ccrcc_factor_scores.csv"
+
+    combined_out = (
+        OUT_DIR
+        / "all_hest_ccrcc_factor_scores.csv"
+    )
+
     combined.to_csv(combined_out, index=False)
 
-    print(f"\nSaved combined factor scores: {combined_out}")
-    print(combined.shape)
-
+    print(f"Saved combined factor scores: {combined_out}")
+    print(f"Combined shape: {combined.shape}")
 
 if __name__ == "__main__":
     main()
