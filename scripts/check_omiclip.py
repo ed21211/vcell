@@ -114,11 +114,14 @@ def main():
                 device,
             )
 
-            text_embedding = loki.utils.encode_texts(
-                model,
-                tokenizer,
-                [gene_sentence],
-                device,
+            text_inputs = tokenizer([gene_sentence]).to(device)
+
+            text_embedding = model.encode_text(text_inputs)
+
+            text_embedding = torch.nn.functional.normalize(
+                text_embedding,
+                p=2,
+                dim=-1,
             )
 
             similarity = image_embedding @ text_embedding.T
