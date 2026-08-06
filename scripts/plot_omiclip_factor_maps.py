@@ -6,7 +6,7 @@ import pandas as pd
 
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
-PRED_CSV = PROJECT_DIR / "outputs" / "omiclip_factor_baseline" / "ridge_baseline_predictions.csv
+PRED_CSV = PROJECT_DIR / "outputs" / "omiclip_factor_baseline" / "ridge_baseline_predictions.csv"
 OUT_DIR = PROJECT_DIR / "outputs" / "omiclip_factor_baseline" / "maps"
 
 FACTOR_NAMES = [
