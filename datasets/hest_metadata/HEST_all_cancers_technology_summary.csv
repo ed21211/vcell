@@ -1,0 +1,51 @@
+oncotree_code,species_group,st_technology,sample_count,patient_count
+ACYC,Human,Visium,1,0
+ALL,Human,Xenium,1,0
+BLCA,Human,Visium,6,5
+CCOV,Human,Visium HD 3',1,0
+CESC,Human,Visium,1,0
+COAD,Human,Visium,50,5
+COAD,Human,Visium HD,4,3
+COAD,Human,Visium HD 3',1,0
+COAD,Human,Xenium,4,3
+COADREAD,Human,Visium,1,0
+COADREAD,Human,Xenium,1,0
+CSCC,Human,Spatial Transcriptomics,12,4
+EPM,Human,Visium,14,11
+GBM,Human,Visium,3,0
+GBM,Human,Xenium,1,0
+HCC,Human,Visium,2,2
+HCC,Human,Xenium,1,0
+HGSOC,Human,Visium,1,0
+HGSOC,Human,Xenium,1,0
+HGSOC,Human,Xenium 5k,2,0
+IDC,Human,Spatial Transcriptomics,108,31
+IDC,Human,Visium,10,4
+IDC,Human,Visium HD,3,0
+IDC,Human,Xenium,18,8
+ILC,Human,Visium,2,0
+ILC,Human,Xenium,2,1
+LIHB,Animal,Visium,10,0
+LNET,Human,Visium,1,0
+LUAD,Human,Visium HD,5,0
+LUAD,Human,Xenium,2,2
+LUAD,Human,Xenium 5k,2,0
+LUSC,Human,Visium,1,0
+MEL,Animal,Visium,5,0
+PAAD,Human,Visium,4,0
+PAAD,Human,Xenium,3,3
+PDAC,Human,Visium HD 3',1,0
+PRAD,Animal,Visium,1,0
+PRAD,Human,Visium,7,0
+PRAD,Human,Visium HD,1,0
+PRAD,Human,Xenium,1,0
+PRCC,Human,Xenium,1,0
+READ,Human,Visium,4,2
+SCCRCC,Human,Visium,24,24
+SKCM,Animal,Visium,3,0
+SKCM,Human,Xenium,3,2
+SOC,Human,Visium,1,0
+SOC,Human,Visium HD,2,0
+SOC,Human,Visium HD 3',2,0
+TODO,Human,Xenium 5k,1,0
+UNKNOWN,Human,Visium,2,0

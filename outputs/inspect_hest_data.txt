@@ -1,0 +1,45 @@
+Loaded metadata: 1276 rows
+Columns: ['dataset_title', 'id', 'image_filename', 'organ', 'disease_state', 'oncotree_code', 'species', 'patient', 'st_technology', 'data_publication_date', 'license', 'study_link', 'download_page_link1', 'inter_spot_dist', 'spot_diameter', 'spots_under_tissue', 'preservation_method', 'nb_genes', 'treatment_comment', 'pixel_size_um_embedded', 'pixel_size_um_estimated', 'magnification', 'fullres_px_width', 'fullres_px_height', 'tissue', 'disease_comment', 'subseries', 'hest_version_added']
+
+Detected columns:
+  Sample:      id
+  Patient:     patient
+  Species:     species
+  Cancer name: disease_state
+  Technology:  st_technology
+
+=== All cancer types ===
+oncotree_code cancer_type                                                     technology_summary  total_sample_count  total_patient_count  human_sample_count  human_patient_count  animal_sample_count  animal_patient_count
+          IDC      Cancer Spatial Transcriptomics (108); Xenium (18); Visium (10); Visium HD (3)                 139                   42                 139                   42                    0                     0
+         COAD      Cancer               Visium (50); Visium HD (4); Xenium (4); Visium HD 3' (1)                  59                    6                  59                    6                    0                     0
+       SCCRCC      Cancer                                                            Visium (24)                  24                   24                  24                   24                    0                     0
+          EPM      Cancer                                                            Visium (14)                  14                   11                  14                   11                    0                     0
+         CSCC      Cancer                                           Spatial Transcriptomics (12)                  12                    4                  12                    4                    0                     0
+         LIHB      Cancer                                                            Visium (10)                  10                    0                   0                    0                   10                     0
+         PRAD      Cancer                                  Visium (8); Visium HD (1); Xenium (1)                  10                    0                   9                    0                    1                     0
+         LUAD      Cancer                               Visium HD (5); Xenium (2); Xenium 5k (2)                   9                    2                   9                    2                    0                     0
+         PAAD      Cancer                                                 Visium (4); Xenium (3)                   7                    3                   7                    3                    0                     0
+         BLCA      Cancer                                                             Visium (6)                   6                    5                   6                    5                    0                     0
+         SKCM      Cancer                                                 Visium (3); Xenium (3)                   6                    2                   3                    2                    3                     0
+          MEL      Cancer                                                             Visium (5)                   5                    0                   0                    0                    5                     0
+          SOC      Cancer                            Visium HD (2); Visium HD 3' (2); Visium (1)                   5                    0                   5                    0                    0                     0
+         READ      Cancer                                                             Visium (4)                   4                    2                   4                    2                    0                     0
+          ILC      Cancer                                                 Visium (2); Xenium (2)                   4                    1                   4                    1                    0                     0
+          GBM      Cancer                                                 Visium (3); Xenium (1)                   4                    0                   4                    0                    0                     0
+        HGSOC      Cancer                                  Xenium 5k (2); Visium (1); Xenium (1)                   4                    0                   4                    0                    0                     0
+          HCC      Cancer                                                 Visium (2); Xenium (1)                   3                    2                   3                    2                    0                     0
+     COADREAD      Cancer                                                 Visium (1); Xenium (1)                   2                    0                   2                    0                    0                     0
+      UNKNOWN      Cancer                                                             Visium (2)                   2                    0                   2                    0                    0                     0
+         ACYC      Cancer                                                             Visium (1)                   1                    0                   1                    0                    0                     0
+          ALL      Cancer                                                             Xenium (1)                   1                    0                   1                    0                    0                     0
+         CCOV      Cancer                                                       Visium HD 3' (1)                   1                    0                   1                    0                    0                     0
+         CESC      Cancer                                                             Visium (1)                   1                    0                   1                    0                    0                     0
+         LNET      Cancer                                                             Visium (1)                   1                    0                   1                    0                    0                     0
+         LUSC      Cancer                                                             Visium (1)                   1                    0                   1                    0                    0                     0
+         PDAC      Cancer                                                       Visium HD 3' (1)                   1                    0                   1                    0                    0                     0
+         PRCC      Cancer                                                             Xenium (1)                   1                    0                   1                    0                    0                     0
+         TODO      Cancer                                                          Xenium 5k (1)                   1                    0                   1                    0                    0                     0
+
+Saved summary: /media/bml/DATA2/Elsa/vcell/scripts/../datasets/hest_metadata/HEST_all_cancers_species_summary.csv
+Saved metadata: /media/bml/DATA2/Elsa/vcell/scripts/../datasets/hest_metadata/HEST_all_cancers_detailed_metadata.csv
+Saved technology summary: /media/bml/DATA2/Elsa/vcell/scripts/../datasets/hest_metadata/HEST_all_cancers_technology_summary.csv

@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Large datasets
+datasets/**
+!datasets/**/
+!datasets/**/.gitkeep
+
+# Keep small metadata CSVs
+!datasets/hest_metadata/*.csv
+
+# Hugging Face cache
+.cache/
+**/.cache/
+
+# Keep output text/log files, ignore only large output artifacts
+outputs/.gitkeep
+outputs/**/*.npy
+outputs/**/*.npz
+outputs/**/*.pt
+outputs/**/*.pth
+outputs/**/*.h5
+outputs/**/*.h5ad
+outputs/**/*.tif
+outputs/**/*.tiff
+outputs/**/*.png
+outputs/**/*.jpg
+outputs/**/*.jpeg
+outputs/**/*.parquet
+outputs/**/*.zip
+
+# Model checkpoints / embeddings / generated arrays
+checkpoints/**
+embeddings/**
+features/**
+runs/**
+wandb/
+mlruns/
+
+# Large data artifacts
+*.h5
+*.h5ad
+*.tif
+*.tiff
+*.svs
+*.ndpi
+*.parquet
+*.geojson
+*.zip
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.pkl
+*.joblib
+*.csv.gz
