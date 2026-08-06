@@ -218,12 +218,44 @@ def summarize_all_cancers(df):
         on="oncotree_code",
         how="left",
     )
-    # Sort by total samples, then patient counts
+
+    # Reorder columns.
+    preferred_columns = [
+        "oncotree_code",
+        "cancer_type",
+        "total_sample_count",
+        "total_patient_count",
+        "human_sample_count",
+        "human_patient_count",
+        "animal_sample_count",
+        "animal_patient_count",
+        "unknown_sample_count",
+        "unknown_patient_count",
+    ]
+
+    preferred_columns = [
+        column
+        for column in preferred_columns
+        if column in pivot_df.columns
+    ]
+
+    remaining_columns = [
+        column
+        for column in pivot_df.columns
+        if column not in preferred_columns
+    ]
+
+    pivot_df = pivot_df[preferred_columns + remaining_columns]
+
+    # Sort by total samples, then total patients.
     pivot_df = pivot_df.sort_values(
         by=["total_sample_count", "total_patient_count"],
         ascending=[False, False],
         na_position="last",
     ).reset_index(drop=True)
+
+    print("\n=== All cancer types ===")
+    print(pivot_df.to_string(index=False))
 
     print("\n=== All cancer types ===")
     print(pivot_df.to_string(index=False))
