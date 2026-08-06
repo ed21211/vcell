@@ -219,10 +219,58 @@ def summarize_all_cancers(df):
         how="left",
     )
 
-    # Reorder columns.
+    # Create technology summary for each cancer type.
+    if technology_column:
+        working_df["_technology_clean"] = (
+            working_df[technology_column]
+            .fillna("Unknown")
+            .astype(str)
+            .str.strip()
+        )
+
+        technology_counts = (
+            working_df[
+                ["oncotree_code", "_technology_clean", "_sample_key"]
+            ]
+            .drop_duplicates()
+            .groupby(
+                ["oncotree_code", "_technology_clean"]
+            )["_sample_key"]
+            .nunique()
+            .reset_index(name="sample_count")
+        )
+
+        technology_counts = technology_counts.sort_values(
+            ["oncotree_code", "sample_count"],
+            ascending=[True, False],
+        )
+
+        technology_counts["technology_item"] = (
+            technology_counts["_technology_clean"]
+            + " ("
+            + technology_counts["sample_count"].astype(str)
+            + ")"
+        )
+
+        technology_summary = (
+            technology_counts
+            .groupby("oncotree_code")["technology_item"]
+            .agg("; ".join)
+            .reset_index(name="technology_summary")
+        )
+
+        pivot_df = pivot_df.merge(
+            technology_summary,
+            on="oncotree_code",
+            how="left",
+        )
+    else:
+        pivot_df["technology_summary"] = "Unknown"
+
     preferred_columns = [
         "oncotree_code",
         "cancer_type",
+        "technology_summary",
         "total_sample_count",
         "total_patient_count",
         "human_sample_count",
