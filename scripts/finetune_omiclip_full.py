@@ -11,6 +11,8 @@ from PIL import Image
 import torch
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
+torch.set_float32_matmul_precision("high")
+torch.backends.cudnn.benchmark = True
 
 from loki.utils import load_model
 
@@ -84,19 +86,17 @@ SEED = 42
 
 EPOCHS = 5
 
-# Change this depending on GPU memory.
-BATCH_SIZE = 8
+BATCH_SIZE = 32
+NUM_WORKERS = 8
 
 LEARNING_RATE = 2e-6
 WEIGHT_DECAY = 0.01
-
-NUM_WORKERS = 4
 
 WARMUP_RATIO = 0.05
 
 GRAD_CLIP_NORM = 1.0
 
-USE_GRAD_CHECKPOINTING = True
+USE_GRAD_CHECKPOINTING = False
 
 
 # ============================================================
