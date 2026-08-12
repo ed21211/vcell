@@ -1201,10 +1201,7 @@ def main():
 
     print(
         f"OmiCLIP loaded in "
-        f"{(
-            time.time()
-            - load_start
-        ) / 60:.2f} minutes",
+        f"{(time.time() - load_start) / 60:.2f} minutes",
         flush=True,
     )
 
