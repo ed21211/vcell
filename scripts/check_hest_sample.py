@@ -6,7 +6,7 @@ import tifffile
 
 # SAMPLE_ID = "TENX105"
 SAMPLE_ID = "INT1"
-DATA_DIR = "../datasets/hest_ccrcc"
+DATA_DIR = "datasets/hest_ccrcc"
 
 paths = {
     "wsi": f"{DATA_DIR}/wsis/{SAMPLE_ID}.tif",
