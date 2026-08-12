@@ -1,6 +1,7 @@
 from pathlib import Path
 import math
 import random
+import time
 
 import h5py
 import numpy as np
@@ -15,7 +16,7 @@ from loki.utils import load_model
 
 
 # ============================================================
-# Paths
+# PATHS
 # ============================================================
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -54,24 +55,36 @@ OUT_DIR.mkdir(
 
 
 # ============================================================
-# Split
+# DATA SPLIT
 # ============================================================
 
-TRAIN_SAMPLES = [f"INT{i}" for i in range(1, 19)]
-VAL_SAMPLES = ["INT19", "INT20", "INT21"]
-TEST_SAMPLES = ["INT22", "INT23", "INT24"]
+TRAIN_SAMPLES = [
+    f"INT{i}"
+    for i in range(1, 19)
+]
+
+VAL_SAMPLES = [
+    "INT19",
+    "INT20",
+    "INT21",
+]
+
+TEST_SAMPLES = [
+    "INT22",
+    "INT23",
+    "INT24",
+]
 
 
 # ============================================================
-# Training configuration
+# TRAINING CONFIG
 # ============================================================
 
 SEED = 42
 
 EPOCHS = 5
 
-# Start conservative.
-# Increase if the larger GPU permits.
+# Change this depending on GPU memory.
 BATCH_SIZE = 8
 
 LEARNING_RATE = 2e-6
@@ -87,7 +100,7 @@ USE_GRAD_CHECKPOINTING = True
 
 
 # ============================================================
-# Helpers
+# REPRODUCIBILITY
 # ============================================================
 
 def set_seed(seed):
@@ -99,12 +112,9 @@ def set_seed(seed):
         torch.cuda.manual_seed_all(seed)
 
 
-def decode_barcode(value):
-    if isinstance(value, bytes):
-        return value.decode("utf-8")
-
-    return str(value)
-
+# ============================================================
+# TEXT COLUMN
+# ============================================================
 
 def detect_text_column(df):
     candidates = [
@@ -126,7 +136,114 @@ def detect_text_column(df):
 
 
 # ============================================================
-# Dataset
+# VALIDATE PAIR TABLE
+# ============================================================
+
+def validate_pair_indices(df):
+    print(
+        "\nValidating patch indices...",
+        flush=True,
+    )
+
+    required_columns = [
+        "sample_id",
+        "barcode",
+        "patch_index",
+    ]
+
+    missing = [
+        column
+        for column in required_columns
+        if column not in df.columns
+    ]
+
+    if missing:
+        raise ValueError(
+            f"Missing required columns: {missing}"
+        )
+
+    problems = []
+
+    for sample_id, sample_df in df.groupby(
+        "sample_id"
+    ):
+        path = (
+            PATCH_DIR
+            / f"{sample_id}.h5"
+        )
+
+        if not path.exists():
+            problems.append(
+                f"{sample_id}: missing {path}"
+            )
+            continue
+
+        with h5py.File(
+            path,
+            "r",
+        ) as handle:
+
+            if "img" not in handle:
+                problems.append(
+                    f"{sample_id}: "
+                    f"'img' missing. "
+                    f"Keys={list(handle.keys())}"
+                )
+                continue
+
+            n_patches = len(
+                handle["img"]
+            )
+
+        indices = (
+            sample_df["patch_index"]
+            .astype(int)
+            .to_numpy()
+        )
+
+        min_index = int(
+            indices.min()
+        )
+
+        max_index = int(
+            indices.max()
+        )
+
+        valid = (
+            min_index >= 0
+            and max_index < n_patches
+        )
+
+        print(
+            f"{sample_id}: "
+            f"pairs={len(sample_df):,}, "
+            f"patches={n_patches:,}, "
+            f"indices={min_index}..{max_index}, "
+            f"OK={valid}",
+            flush=True,
+        )
+
+        if not valid:
+            problems.append(
+                f"{sample_id}: "
+                f"indices {min_index}..{max_index} "
+                f"outside 0..{n_patches - 1}"
+            )
+
+    if problems:
+        raise RuntimeError(
+            "\nPatch index validation failed:\n"
+            + "\n".join(problems)
+        )
+
+    print(
+        "All patch indices valid.",
+        flush=True,
+    )
+
+
+# ============================================================
+# DATASET
 # ============================================================
 
 class HESTOmiCLIPDataset(Dataset):
@@ -138,15 +255,22 @@ class HESTOmiCLIPDataset(Dataset):
         patch_dir,
         text_column,
     ):
-        self.df = dataframe.reset_index(drop=True).copy()
+        self.df = (
+            dataframe
+            .reset_index(drop=True)
+            .copy()
+        )
 
         self.preprocess = preprocess
-        self.patch_dir = Path(patch_dir)
-        self.text_column = text_column
+        self.patch_dir = Path(
+            patch_dir
+        )
+        self.text_column = (
+            text_column
+        )
 
-        self.barcode_lookup = {}
-
-        # HDF5 handles are opened lazily inside worker processes.
+        # Each DataLoader worker lazily
+        # creates its own HDF5 handles.
         self._handles = {}
 
         samples = sorted(
@@ -156,11 +280,13 @@ class HESTOmiCLIPDataset(Dataset):
         )
 
         print(
-            f"Building barcode lookup for "
-            f"{len(samples)} samples..."
+            f"Preparing patch access for "
+            f"{len(samples)} samples...",
+            flush=True,
         )
 
         for sample_id in samples:
+
             path = (
                 self.patch_dir
                 / f"{sample_id}.h5"
@@ -171,31 +297,13 @@ class HESTOmiCLIPDataset(Dataset):
                     f"Missing patch file: {path}"
                 )
 
-            with h5py.File(path, "r") as handle:
-
-                if "barcode" not in handle:
-                    raise KeyError(
-                        f"{path} does not contain "
-                        f"'barcode'. Keys: "
-                        f"{list(handle.keys())}"
-                    )
-
-                barcodes = [
-                    decode_barcode(x)
-                    for x in handle["barcode"][:]
-                ]
-
-            self.barcode_lookup[sample_id] = {
-                barcode: index
-                for index, barcode
-                in enumerate(barcodes)
-            }
-
     def __len__(self):
         return len(self.df)
 
-    def _get_handle(self, sample_id):
-
+    def _get_handle(
+        self,
+        sample_id,
+    ):
         if sample_id not in self._handles:
 
             path = (
@@ -203,16 +311,24 @@ class HESTOmiCLIPDataset(Dataset):
                 / f"{sample_id}.h5"
             )
 
-            self._handles[sample_id] = h5py.File(
+            self._handles[
+                sample_id
+            ] = h5py.File(
                 path,
                 "r",
             )
 
-        return self._handles[sample_id]
+        return self._handles[
+            sample_id
+        ]
 
-    def __getitem__(self, index):
-
-        row = self.df.iloc[index]
+    def __getitem__(
+        self,
+        index,
+    ):
+        row = self.df.iloc[
+            index
+        ]
 
         sample_id = str(
             row["sample_id"]
@@ -226,17 +342,12 @@ class HESTOmiCLIPDataset(Dataset):
             row[self.text_column]
         )
 
-        lookup = self.barcode_lookup[
-            sample_id
-        ]
-
-        if barcode not in lookup:
-            raise KeyError(
-                f"Barcode {barcode} "
-                f"not found in {sample_id}.h5"
-            )
-
-        patch_index = lookup[barcode]
+        # IMPORTANT:
+        # Use the pairing already created by
+        # prepare_omiclip_pairs.py.
+        patch_index = int(
+            row["patch_index"]
+        )
 
         handle = self._get_handle(
             sample_id
@@ -249,37 +360,58 @@ class HESTOmiCLIPDataset(Dataset):
                 f"Keys: {list(handle.keys())}"
             )
 
-        image_array = handle[
-            "img"
-        ][patch_index]
+        image_array = (
+            handle["img"][
+                patch_index
+            ]
+        )
 
-        # Handle CHW if necessary.
+        # Handle CHW images if needed.
         if (
             image_array.ndim == 3
             and image_array.shape[0] == 3
             and image_array.shape[-1] != 3
         ):
-            image_array = np.transpose(
-                image_array,
-                (1, 2, 0),
+            image_array = (
+                np.transpose(
+                    image_array,
+                    (1, 2, 0),
+                )
             )
 
-        if image_array.dtype != np.uint8:
-
-            if image_array.max() <= 1.0:
+        # Convert to uint8.
+        if (
+            image_array.dtype
+            != np.uint8
+        ):
+            if (
+                np.nanmax(
+                    image_array
+                )
+                <= 1.0
+            ):
                 image_array = (
-                    image_array * 255
+                    image_array
+                    * 255.0
                 )
 
-            image_array = np.clip(
-                image_array,
-                0,
-                255,
-            ).astype(np.uint8)
+            image_array = (
+                np.clip(
+                    image_array,
+                    0,
+                    255,
+                )
+                .astype(
+                    np.uint8
+                )
+            )
 
-        image = Image.fromarray(
-            image_array
-        ).convert("RGB")
+        image = (
+            Image.fromarray(
+                image_array
+            )
+            .convert("RGB")
+        )
 
         image = self.preprocess(
             image
@@ -294,75 +426,98 @@ class HESTOmiCLIPDataset(Dataset):
 
 
 # ============================================================
-# Token handling
+# TOKEN HANDLING
 # ============================================================
 
 def move_tokens_to_device(
     tokens,
     device,
 ):
-
-    if isinstance(tokens, dict):
-
+    if isinstance(
+        tokens,
+        dict,
+    ):
         return {
-            key: value.to(device)
-            if torch.is_tensor(value)
-            else value
-
+            key: (
+                value.to(
+                    device,
+                    non_blocking=True,
+                )
+                if torch.is_tensor(
+                    value
+                )
+                else value
+            )
             for key, value
             in tokens.items()
         }
 
-    return tokens.to(device)
+    if torch.is_tensor(
+        tokens
+    ):
+        return tokens.to(
+            device,
+            non_blocking=True,
+        )
+
+    raise TypeError(
+        f"Unsupported tokenizer "
+        f"output type: {type(tokens)}"
+    )
 
 
 def encode_text(
     model,
     tokens,
 ):
+    # Standard OpenCLIP tokenizer.
+    if torch.is_tensor(
+        tokens
+    ):
+        return model.encode_text(
+            tokens
+        )
 
-    # Normal OpenCLIP tokenizer output.
-    if torch.is_tensor(tokens):
-        return model.encode_text(tokens)
-
-    # HF-style tokenizer dictionary.
-    if isinstance(tokens, dict):
-
+    # HuggingFace-style tokenizer.
+    if isinstance(
+        tokens,
+        dict,
+    ):
         input_ids = tokens.get(
             "input_ids"
         )
 
-        attention_mask = tokens.get(
-            "attention_mask"
+        attention_mask = (
+            tokens.get(
+                "attention_mask"
+            )
         )
 
         if input_ids is None:
             raise RuntimeError(
-                "Tokenizer dictionary did not "
-                "contain input_ids."
+                "Tokenizer dictionary "
+                "does not contain input_ids."
             )
 
-        # Newer OpenCLIP.
         try:
             return model.encode_text(
                 input_ids,
                 text_valid=attention_mask,
             )
 
-        # Older Loki/OpenCLIP.
         except TypeError:
             return model.encode_text(
                 input_ids
             )
 
     raise TypeError(
-        f"Unsupported token type: "
+        f"Unsupported tokens: "
         f"{type(tokens)}"
     )
 
 
 # ============================================================
-# Contrastive loss
+# CONTRASTIVE LOSS
 # ============================================================
 
 def contrastive_loss(
@@ -370,15 +525,18 @@ def contrastive_loss(
     text_features,
     model,
 ):
-
-    image_features = F.normalize(
-        image_features,
-        dim=-1,
+    image_features = (
+        F.normalize(
+            image_features,
+            dim=-1,
+        )
     )
 
-    text_features = F.normalize(
-        text_features,
-        dim=-1,
+    text_features = (
+        F.normalize(
+            text_features,
+            dim=-1,
+        )
     )
 
     logit_scale = (
@@ -398,40 +556,58 @@ def contrastive_loss(
         device=logits.device,
     )
 
-    image_to_text = F.cross_entropy(
-        logits,
-        labels,
+    image_to_text_loss = (
+        F.cross_entropy(
+            logits,
+            labels,
+        )
     )
 
-    text_to_image = F.cross_entropy(
-        logits.T,
-        labels,
+    text_to_image_loss = (
+        F.cross_entropy(
+            logits.T,
+            labels,
+        )
     )
 
     loss = (
-        image_to_text
-        + text_to_image
-    ) / 2
+        image_to_text_loss
+        + text_to_image_loss
+    ) / 2.0
 
     matched_similarity = (
         image_features
         * text_features
-    ).sum(dim=-1).mean()
+    ).sum(
+        dim=-1
+    ).mean()
 
     image_accuracy = (
-        logits.argmax(dim=1)
-        == labels
-    ).float().mean()
+        (
+            logits.argmax(
+                dim=1
+            )
+            == labels
+        )
+        .float()
+        .mean()
+    )
 
     text_accuracy = (
-        logits.argmax(dim=0)
-        == labels
-    ).float().mean()
+        (
+            logits.argmax(
+                dim=0
+            )
+            == labels
+        )
+        .float()
+        .mean()
+    )
 
     retrieval_accuracy = (
         image_accuracy
         + text_accuracy
-    ) / 2
+    ) / 2.0
 
     return (
         loss,
@@ -441,17 +617,19 @@ def contrastive_loss(
 
 
 # ============================================================
-# Optimizer
+# OPTIMIZER
 # ============================================================
 
-def build_optimizer(model):
-
+def build_optimizer(
+    model,
+):
     decay = []
     no_decay = []
 
-    for name, parameter in (
-        model.named_parameters()
-    ):
+    for (
+        name,
+        parameter,
+    ) in model.named_parameters():
 
         if not parameter.requires_grad:
             continue
@@ -462,35 +640,44 @@ def build_optimizer(model):
             or "norm" in name.lower()
             or "logit_scale" in name
         ):
-            no_decay.append(parameter)
+            no_decay.append(
+                parameter
+            )
 
         else:
-            decay.append(parameter)
+            decay.append(
+                parameter
+            )
 
-    return torch.optim.AdamW(
-        [
-            {
-                "params": decay,
-                "weight_decay": WEIGHT_DECAY,
-            },
-            {
-                "params": no_decay,
-                "weight_decay": 0.0,
-            },
-        ],
-        lr=LEARNING_RATE,
+    optimizer = (
+        torch.optim.AdamW(
+            [
+                {
+                    "params": decay,
+                    "weight_decay":
+                        WEIGHT_DECAY,
+                },
+                {
+                    "params": no_decay,
+                    "weight_decay":
+                        0.0,
+                },
+            ],
+            lr=LEARNING_RATE,
+        )
     )
+
+    return optimizer
 
 
 # ============================================================
-# Scheduler
+# LR SCHEDULER
 # ============================================================
 
 def build_scheduler(
     optimizer,
     total_steps,
 ):
-
     warmup_steps = max(
         1,
         int(
@@ -499,8 +686,9 @@ def build_scheduler(
         ),
     )
 
-    def lr_lambda(step):
-
+    def lr_lambda(
+        step,
+    ):
         if step < warmup_steps:
 
             return (
@@ -508,7 +696,8 @@ def build_scheduler(
             ) / warmup_steps
 
         progress = (
-            step - warmup_steps
+            step
+            - warmup_steps
         ) / max(
             1,
             total_steps
@@ -518,7 +707,7 @@ def build_scheduler(
         return (
             0.5
             * (
-                1
+                1.0
                 + math.cos(
                     math.pi
                     * progress
@@ -526,14 +715,17 @@ def build_scheduler(
             )
         )
 
-    return torch.optim.lr_scheduler.LambdaLR(
-        optimizer,
-        lr_lambda,
+    return (
+        torch.optim.lr_scheduler
+        .LambdaLR(
+            optimizer,
+            lr_lambda,
+        )
     )
 
 
 # ============================================================
-# One epoch
+# RUN ONE EPOCH
 # ============================================================
 
 def run_epoch(
@@ -546,8 +738,9 @@ def run_epoch(
     scheduler=None,
     scaler=None,
 ):
-
-    training = optimizer is not None
+    training = (
+        optimizer is not None
+    )
 
     if training:
         model.train()
@@ -559,11 +752,15 @@ def run_epoch(
     total_accuracy = 0.0
     total_rows = 0
 
-    for batch_index, batch in enumerate(
+    epoch_start = time.time()
+
+    for (
+        batch_index,
+        batch,
+    ) in enumerate(
         loader,
         start=1,
     ):
-
         (
             images,
             sentences,
@@ -580,12 +777,16 @@ def run_epoch(
             list(sentences)
         )
 
-        tokens = move_tokens_to_device(
-            tokens,
-            device,
+        tokens = (
+            move_tokens_to_device(
+                tokens,
+                device,
+            )
         )
 
-        batch_size = images.shape[0]
+        current_batch_size = (
+            images.shape[0]
+        )
 
         if training:
             optimizer.zero_grad(
@@ -600,19 +801,21 @@ def run_epoch(
                 device_type="cuda",
                 dtype=amp_dtype,
                 enabled=(
-                    device.type == "cuda"
+                    device.type
+                    == "cuda"
                 ),
             ):
-
                 image_features = (
                     model.encode_image(
                         images
                     )
                 )
 
-                text_features = encode_text(
-                    model,
-                    tokens,
+                text_features = (
+                    encode_text(
+                        model,
+                        tokens,
+                    )
                 )
 
                 (
@@ -659,32 +862,63 @@ def run_epoch(
 
                     optimizer.step()
 
-                scheduler.step()
+                if scheduler is not None:
+                    scheduler.step()
 
         total_loss += (
             loss.item()
-            * batch_size
+            * current_batch_size
         )
 
         total_similarity += (
             similarity.item()
-            * batch_size
+            * current_batch_size
         )
 
         total_accuracy += (
             accuracy.item()
-            * batch_size
+            * current_batch_size
         )
 
-        total_rows += batch_size
+        total_rows += (
+            current_batch_size
+        )
 
         if (
             training
             and batch_index % 100 == 0
         ):
+            elapsed = (
+                time.time()
+                - epoch_start
+            )
+
+            batches_per_second = (
+                batch_index
+                / elapsed
+            )
+
+            remaining_batches = (
+                len(loader)
+                - batch_index
+            )
+
+            eta_minutes = (
+                remaining_batches
+                / max(
+                    batches_per_second,
+                    1e-9,
+                )
+                / 60.0
+            )
+
+            lr = (
+                optimizer
+                .param_groups[0]["lr"]
+            )
 
             print(
-                f"  batch "
+                f"batch "
                 f"{batch_index:5d}/"
                 f"{len(loader):5d} | "
                 f"loss "
@@ -692,7 +926,11 @@ def run_epoch(
                 f"sim "
                 f"{similarity.item():.4f} | "
                 f"retrieval "
-                f"{accuracy.item():.4f}",
+                f"{accuracy.item():.4f} | "
+                f"lr "
+                f"{lr:.2e} | "
+                f"ETA "
+                f"{eta_minutes:.1f} min",
                 flush=True,
             )
 
@@ -712,21 +950,84 @@ def run_epoch(
 
 
 # ============================================================
-# Main
+# SAVE CHECKPOINT
+# ============================================================
+
+def save_checkpoint(
+    path,
+    model,
+    epoch,
+    val_loss,
+):
+    print(
+        f"Saving checkpoint: {path}",
+        flush=True,
+    )
+
+    torch.save(
+        {
+            "epoch":
+                epoch,
+
+            "model_state_dict":
+                model.state_dict(),
+
+            "val_loss":
+                val_loss,
+
+            "train_samples":
+                TRAIN_SAMPLES,
+
+            "val_samples":
+                VAL_SAMPLES,
+
+            "test_samples":
+                TEST_SAMPLES,
+
+            "learning_rate":
+                LEARNING_RATE,
+
+            "batch_size":
+                BATCH_SIZE,
+        },
+        path,
+    )
+
+
+# ============================================================
+# MAIN
 # ============================================================
 
 def main():
+    set_seed(
+        SEED
+    )
 
-    set_seed(SEED)
+    print(
+        "================================"
+    )
+    print(
+        "FULL OmiCLIP ccRCC FINE-TUNING"
+    )
+    print(
+        "================================"
+    )
+
+    # --------------------------------------------------------
+    # Basic checks
+    # --------------------------------------------------------
 
     if not PAIRS_CSV.exists():
         raise FileNotFoundError(
-            PAIRS_CSV
+            f"Missing: {PAIRS_CSV}"
         )
 
-    if not PRETRAINED_CHECKPOINT.exists():
+    if not (
+        PRETRAINED_CHECKPOINT.exists()
+    ):
         raise FileNotFoundError(
-            PRETRAINED_CHECKPOINT
+            f"Missing: "
+            f"{PRETRAINED_CHECKPOINT}"
         )
 
     if not torch.cuda.is_available():
@@ -740,13 +1041,29 @@ def main():
     )
 
     print(
-        "GPU:",
+        "\nGPU:",
         torch.cuda.get_device_name(0),
     )
 
+    gpu_memory = (
+        torch.cuda
+        .get_device_properties(0)
+        .total_memory
+        / 1024**3
+    )
+
+    print(
+        f"GPU VRAM: "
+        f"{gpu_memory:.2f} GB"
+    )
+
     # --------------------------------------------------------
-    # Load pair table
+    # Load pairs
     # --------------------------------------------------------
+
+    print(
+        "\nLoading pair table..."
+    )
 
     df = pd.read_csv(
         PAIRS_CSV
@@ -762,8 +1079,10 @@ def main():
         list(df.columns),
     )
 
-    text_column = detect_text_column(
-        df
+    text_column = (
+        detect_text_column(
+            df
+        )
     )
 
     print(
@@ -781,6 +1100,18 @@ def main():
         df["barcode"]
         .astype(str)
     )
+
+    # --------------------------------------------------------
+    # Validate pair table
+    # --------------------------------------------------------
+
+    validate_pair_indices(
+        df
+    )
+
+    # --------------------------------------------------------
+    # Split
+    # --------------------------------------------------------
 
     train_df = df[
         df["sample_id"].isin(
@@ -803,22 +1134,47 @@ def main():
     print(
         "\nSplit sizes:"
     )
+
     print(
         "Train:",
         len(train_df),
-    )
-    print(
-        "Validation:",
-        len(val_df),
-    )
-    print(
-        "Held-out test:",
-        len(test_df),
+        TRAIN_SAMPLES,
     )
 
     print(
-        "\nTEST SAMPLES ARE NOT "
-        "USED FOR FINE-TUNING."
+        "Validation:",
+        len(val_df),
+        VAL_SAMPLES,
+    )
+
+    print(
+        "Held-out test:",
+        len(test_df),
+        TEST_SAMPLES,
+    )
+
+    if len(train_df) == 0:
+        raise RuntimeError(
+            "Training split is empty."
+        )
+
+    if len(val_df) == 0:
+        raise RuntimeError(
+            "Validation split is empty."
+        )
+
+    if len(test_df) == 0:
+        raise RuntimeError(
+            "Test split is empty."
+        )
+
+    print(
+        "\nIMPORTANT:"
+    )
+
+    print(
+        "INT22–INT24 are NOT used "
+        "during fine-tuning."
     )
 
     # --------------------------------------------------------
@@ -826,23 +1182,42 @@ def main():
     # --------------------------------------------------------
 
     print(
-        "\nLoading pretrained OmiCLIP..."
+        "\nLoading pretrained OmiCLIP...",
+        flush=True,
     )
 
-    model, preprocess, tokenizer = (
-        load_model(
-            str(
-                PRETRAINED_CHECKPOINT
-            ),
-            device,
-        )
+    load_start = time.time()
+
+    (
+        model,
+        preprocess,
+        tokenizer,
+    ) = load_model(
+        str(
+            PRETRAINED_CHECKPOINT
+        ),
+        device,
     )
 
-    # Full fine-tuning.
+    print(
+        f"OmiCLIP loaded in "
+        f"{(
+            time.time()
+            - load_start
+        ) / 60:.2f} minutes",
+        flush=True,
+    )
+
+    # --------------------------------------------------------
+    # Full fine-tuning
+    # --------------------------------------------------------
+
     for parameter in (
         model.parameters()
     ):
-        parameter.requires_grad = True
+        parameter.requires_grad = (
+            True
+        )
 
     if (
         USE_GRAD_CHECKPOINTING
@@ -853,24 +1228,25 @@ def main():
     ):
         print(
             "Enabling gradient "
-            "checkpointing..."
+            "checkpointing...",
+            flush=True,
         )
 
         model.set_grad_checkpointing(
             True
         )
 
-    model.train()
-
     total_parameters = sum(
-        p.numel()
-        for p in model.parameters()
+        parameter.numel()
+        for parameter
+        in model.parameters()
     )
 
     trainable_parameters = sum(
-        p.numel()
-        for p in model.parameters()
-        if p.requires_grad
+        parameter.numel()
+        for parameter
+        in model.parameters()
+        if parameter.requires_grad
     )
 
     print(
@@ -889,12 +1265,12 @@ def main():
     ):
         raise RuntimeError(
             "Not all parameters are "
-            "trainable. This is not "
-            "full fine-tuning."
+            "trainable. Full fine-tuning "
+            "is not enabled."
         )
 
     # --------------------------------------------------------
-    # Datasets
+    # Dataset
     # --------------------------------------------------------
 
     print(
@@ -919,28 +1295,42 @@ def main():
         )
     )
 
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=BATCH_SIZE,
-        shuffle=True,
-        num_workers=NUM_WORKERS,
-        pin_memory=True,
-        drop_last=True,
-        persistent_workers=(
-            NUM_WORKERS > 0
-        ),
+    train_loader = (
+        DataLoader(
+            train_dataset,
+            batch_size=BATCH_SIZE,
+            shuffle=True,
+            num_workers=NUM_WORKERS,
+            pin_memory=True,
+            drop_last=True,
+            persistent_workers=(
+                NUM_WORKERS > 0
+            ),
+        )
     )
 
-    val_loader = DataLoader(
-        val_dataset,
-        batch_size=BATCH_SIZE,
-        shuffle=False,
-        num_workers=NUM_WORKERS,
-        pin_memory=True,
-        drop_last=False,
-        persistent_workers=(
-            NUM_WORKERS > 0
-        ),
+    val_loader = (
+        DataLoader(
+            val_dataset,
+            batch_size=BATCH_SIZE,
+            shuffle=False,
+            num_workers=NUM_WORKERS,
+            pin_memory=True,
+            drop_last=False,
+            persistent_workers=(
+                NUM_WORKERS > 0
+            ),
+        )
+    )
+
+    print(
+        "Training batches:",
+        len(train_loader),
+    )
+
+    print(
+        "Validation batches:",
+        len(val_loader),
     )
 
     # --------------------------------------------------------
@@ -948,7 +1338,8 @@ def main():
     # --------------------------------------------------------
 
     bf16_supported = (
-        torch.cuda.is_bf16_supported()
+        torch.cuda
+        .is_bf16_supported()
     )
 
     if bf16_supported:
@@ -970,7 +1361,8 @@ def main():
         )
 
         scaler = (
-            torch.cuda.amp.GradScaler()
+            torch.cuda.amp
+            .GradScaler()
         )
 
         print(
@@ -978,7 +1370,7 @@ def main():
         )
 
     # --------------------------------------------------------
-    # Optimizer / scheduler
+    # Optimizer
     # --------------------------------------------------------
 
     optimizer = build_optimizer(
@@ -995,8 +1387,37 @@ def main():
         total_steps,
     )
 
+    print(
+        "\nTraining configuration:"
+    )
+
+    print(
+        "Epochs:",
+        EPOCHS,
+    )
+
+    print(
+        "Batch size:",
+        BATCH_SIZE,
+    )
+
+    print(
+        "Learning rate:",
+        LEARNING_RATE,
+    )
+
+    print(
+        "Weight decay:",
+        WEIGHT_DECAY,
+    )
+
+    print(
+        "Total optimizer steps:",
+        total_steps,
+    )
+
     # --------------------------------------------------------
-    # Train
+    # Training
     # --------------------------------------------------------
 
     best_val_loss = float(
@@ -1005,46 +1426,58 @@ def main():
 
     history = []
 
+    training_start = (
+        time.time()
+    )
+
     for epoch in range(
         1,
         EPOCHS + 1,
     ):
 
         print(
-            f"\n"
-            f"=============================="
+            "\n"
+            "=============================="
         )
+
         print(
             f"Epoch {epoch}/{EPOCHS}"
         )
-        print(
-            f"=============================="
-        )
-
-        train_metrics = run_epoch(
-            model=model,
-            loader=train_loader,
-            tokenizer=tokenizer,
-            device=device,
-            amp_dtype=amp_dtype,
-            optimizer=optimizer,
-            scheduler=scheduler,
-            scaler=scaler,
-        )
 
         print(
-            "\nValidation..."
+            "==============================",
+            flush=True,
         )
 
-        val_metrics = run_epoch(
-            model=model,
-            loader=val_loader,
-            tokenizer=tokenizer,
-            device=device,
-            amp_dtype=amp_dtype,
-            optimizer=None,
-            scheduler=None,
-            scaler=None,
+        train_metrics = (
+            run_epoch(
+                model=model,
+                loader=train_loader,
+                tokenizer=tokenizer,
+                device=device,
+                amp_dtype=amp_dtype,
+                optimizer=optimizer,
+                scheduler=scheduler,
+                scaler=scaler,
+            )
+        )
+
+        print(
+            "\nValidation...",
+            flush=True,
+        )
+
+        val_metrics = (
+            run_epoch(
+                model=model,
+                loader=val_loader,
+                tokenizer=tokenizer,
+                device=device,
+                amp_dtype=amp_dtype,
+                optimizer=None,
+                scheduler=None,
+                scaler=None,
+            )
         )
 
         row = {
@@ -1052,7 +1485,9 @@ def main():
                 epoch,
 
             "train_loss":
-                train_metrics["loss"],
+                train_metrics[
+                    "loss"
+                ],
 
             "train_similarity":
                 train_metrics[
@@ -1065,7 +1500,9 @@ def main():
                 ],
 
             "val_loss":
-                val_metrics["loss"],
+                val_metrics[
+                    "loss"
+                ],
 
             "val_similarity":
                 val_metrics[
@@ -1078,7 +1515,9 @@ def main():
                 ],
         }
 
-        history.append(row)
+        history.append(
+            row
+        )
 
         print(
             "\nEpoch results:"
@@ -1086,30 +1525,38 @@ def main():
 
         print(
             f"Train loss: "
-            f"{row['train_loss']:.5f}"
+            f"{row['train_loss']:.6f}"
         )
 
         print(
-            f"Val loss:   "
-            f"{row['val_loss']:.5f}"
+            f"Val loss: "
+            f"{row['val_loss']:.6f}"
         )
 
         print(
-            f"Train sim:  "
-            f"{row['train_similarity']:.5f}"
+            f"Train similarity: "
+            f"{row['train_similarity']:.6f}"
         )
 
         print(
-            f"Val sim:    "
-            f"{row['val_similarity']:.5f}"
+            f"Val similarity: "
+            f"{row['val_similarity']:.6f}"
+        )
+
+        print(
+            f"Train retrieval: "
+            f"{row['train_retrieval_accuracy']:.6f}"
         )
 
         print(
             f"Val retrieval: "
-            f"{row['val_retrieval_accuracy']:.5f}"
+            f"{row['val_retrieval_accuracy']:.6f}"
         )
 
-        # Save history each epoch.
+        # ----------------------------------------------------
+        # Save history
+        # ----------------------------------------------------
+
         history_path = (
             OUT_DIR
             / "training_history.csv"
@@ -1122,106 +1569,79 @@ def main():
             index=False,
         )
 
-        # Last checkpoint.
-        last_path = (
-            OUT_DIR
-            / "last.pt"
+        # ----------------------------------------------------
+        # Save latest checkpoint
+        # ----------------------------------------------------
+
+        save_checkpoint(
+            path=(
+                OUT_DIR
+                / "last.pt"
+            ),
+            model=model,
+            epoch=epoch,
+            val_loss=row[
+                "val_loss"
+            ],
         )
 
-        torch.save(
-            {
-                "epoch":
-                    epoch,
+        # ----------------------------------------------------
+        # Best checkpoint based ONLY on validation
+        # ----------------------------------------------------
 
-                "model_state_dict":
-                    model.state_dict(),
-
-                "optimizer_state_dict":
-                    optimizer.state_dict(),
-
-                "val_loss":
-                    row["val_loss"],
-
-                "train_samples":
-                    TRAIN_SAMPLES,
-
-                "val_samples":
-                    VAL_SAMPLES,
-
-                "test_samples":
-                    TEST_SAMPLES,
-
-                "learning_rate":
-                    LEARNING_RATE,
-
-                "batch_size":
-                    BATCH_SIZE,
-            },
-            last_path,
-        )
-
-        # Best checkpoint determined only from validation.
         if (
             row["val_loss"]
             < best_val_loss
         ):
-
             best_val_loss = (
                 row["val_loss"]
             )
 
-            best_path = (
-                OUT_DIR
-                / "best.pt"
-            )
-
-            torch.save(
-                {
-                    "epoch":
-                        epoch,
-
-                    "model_state_dict":
-                        model.state_dict(),
-
-                    "val_loss":
-                        best_val_loss,
-
-                    "train_samples":
-                        TRAIN_SAMPLES,
-
-                    "val_samples":
-                        VAL_SAMPLES,
-
-                    "test_samples":
-                        TEST_SAMPLES,
-
-                    "learning_rate":
-                        LEARNING_RATE,
-
-                    "batch_size":
-                        BATCH_SIZE,
-                },
-                best_path,
+            save_checkpoint(
+                path=(
+                    OUT_DIR
+                    / "best.pt"
+                ),
+                model=model,
+                epoch=epoch,
+                val_loss=best_val_loss,
             )
 
             print(
-                f"\nNEW BEST MODEL: "
-                f"{best_path}"
+                "\nNEW BEST MODEL",
+                flush=True,
             )
 
         print(
             f"Best validation loss: "
-            f"{best_val_loss:.5f}"
+            f"{best_val_loss:.6f}"
         )
 
+    # --------------------------------------------------------
+    # Finished
+    # --------------------------------------------------------
+
+    total_hours = (
+        time.time()
+        - training_start
+    ) / 3600.0
+
     print(
-        "\n================================"
+        "\n"
+        "================================"
     )
+
     print(
         "FULL OmiCLIP FINE-TUNING DONE"
     )
+
     print(
         "================================"
+    )
+
+    print(
+        f"Training time: "
+        f"{total_hours:.2f} hours"
     )
 
     print(
@@ -1230,9 +1650,19 @@ def main():
     )
 
     print(
+        "Last checkpoint:",
+        OUT_DIR / "last.pt",
+    )
+
+    print(
         "History:",
         OUT_DIR
         / "training_history.csv",
+    )
+
+    print(
+        "\nINT22–INT24 remained "
+        "completely held out."
     )
 
 
