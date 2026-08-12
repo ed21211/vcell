@@ -90,7 +90,6 @@ def main():
         repo_type="dataset",
         allow_patterns=patterns,
         local_dir=LOCAL_DIR,
-        local_dir_use_symlinks=False,
     )
 
     print(f"\nDone. Data downloaded to: {LOCAL_DIR}")
