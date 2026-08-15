@@ -663,6 +663,7 @@ def build_optimizer(
                 },
             ],
             lr=LEARNING_RATE,
+            foreach=False,
         )
     )
 
