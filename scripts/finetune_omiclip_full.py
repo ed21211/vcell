@@ -86,8 +86,9 @@ SEED = 42
 
 EPOCHS = 5
 
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 NUM_WORKERS = 8
+USE_GRAD_CHECKPOINTING = True
 
 LEARNING_RATE = 2e-6
 WEIGHT_DECAY = 0.01
@@ -95,8 +96,6 @@ WEIGHT_DECAY = 0.01
 WARMUP_RATIO = 0.05
 
 GRAD_CLIP_NORM = 1.0
-
-USE_GRAD_CHECKPOINTING = False
 
 
 # ============================================================
