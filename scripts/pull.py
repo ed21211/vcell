@@ -107,12 +107,12 @@ def save_factor_overlay(factor_csv_path, st_h5ad_path, out_path, sample_id, fact
               f"Available columns: {df.columns.tolist()}")
         return
 
-    adata = ad.read_h5ad(st_h5ad_path)
-    coords = adata.obsm.get("spatial")
+    # your factor-score script stores coords as spatial_x / spatial_y
+    x_col = "spatial_x" if "spatial_x" in df.columns else "x"
+    y_col = "spatial_y" if "spatial_y" in df.columns else "y"
 
     fig, ax = plt.subplots(figsize=(8, 8))
-    sc = ax.scatter(df["x"] if "x" in df.columns else coords[:len(df), 0],
-                     df["y"] if "y" in df.columns else coords[:len(df), 1],
+    sc = ax.scatter(df[x_col], df[y_col],
                      c=df[factor_col], cmap="viridis", s=8)
     plt.colorbar(sc, ax=ax, label=factor_col)
     ax.set_title(f"{sample_id}: {factor_col} spatial distribution")
@@ -129,9 +129,10 @@ if __name__ == "__main__":
     parser.add_argument("--n-patches", type=int, default=6)
     parser.add_argument("--patches-dir", default="datasets/hest_ccrcc/patches")
     parser.add_argument("--st-dir", default="datasets/hest_ccrcc/st")
-    parser.add_argument("--factor-csv", default="outputs/all_hest_ccrcc_factor_scores.csv")
+    parser.add_argument("--factor-csv", default="features/hest_factor_scores/all_hest_ccrcc_factor_scores.csv")
     parser.add_argument("--out-dir", default="outputs/presentation_examples")
-    parser.add_argument("--factor-col", default="tgfb_caf")
+    parser.add_argument("--factor-col", default="tgfb_caf",
+                         help="one of: t_cell_infiltration, cytotoxicity, tgfb_caf, proliferation")
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
