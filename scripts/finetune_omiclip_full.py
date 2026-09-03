@@ -47,7 +47,7 @@ PRETRAINED_CHECKPOINT = (
 OUT_DIR = (
     PROJECT_DIR
     / "models"
-    / "omiclip_ccrcc_full"
+    / "omiclip_ccrcc_full_e2_lr1e6"
 )
 
 OUT_DIR.mkdir(
@@ -84,13 +84,17 @@ TEST_SAMPLES = [
 
 SEED = 42
 
-EPOCHS = 5
+# EPOCHS = 5
 
-BATCH_SIZE = 32
+# BATCH_SIZE = 32
 NUM_WORKERS = 8
 USE_GRAD_CHECKPOINTING = True
 
-LEARNING_RATE = 2e-6
+EPOCHS = 2
+BATCH_SIZE = 32
+LEARNING_RATE = 1e-6
+
+# LEARNING_RATE = 2e-6
 WEIGHT_DECAY = 0.01
 
 WARMUP_RATIO = 0.05
