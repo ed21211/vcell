@@ -24,15 +24,15 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 DATA_NPZ = (
     PROJECT_DIR
     / "outputs"
-    / "hest_factor_baseline"
-    / "virchow_factor_dataset.npz"
+    / "hest_ccrcc_joined"
+    / "hest_ccrcc_virchow2_factor_dataset.npz"
 )
 
 META_CSV = (
     PROJECT_DIR
-    / "outputs"
-    / "hest_factor_baseline"
-    / "virchow_factor_metadata.csv"
+    / "features"
+    / "hest_ccrcc_joined"
+    / "hest_ccrcc_virchow2_factor_metadata.csv"
 )
 
 OUT_DIR = (

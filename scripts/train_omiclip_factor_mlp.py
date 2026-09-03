@@ -30,7 +30,7 @@ DATA_NPZ = (
 
 META_CSV = (
     PROJECT_DIR
-    / "outputs"
+    / "features"
     / "omiclip_factor_baseline"
     / "omiclip_factor_metadata.csv"
 )
