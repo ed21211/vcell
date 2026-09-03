@@ -23,7 +23,7 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 
 DATA_NPZ = (
     PROJECT_DIR
-    / "outputs"
+    / "features"
     / "hest_ccrcc_joined"
     / "hest_ccrcc_virchow2_factor_dataset.npz"
 )
