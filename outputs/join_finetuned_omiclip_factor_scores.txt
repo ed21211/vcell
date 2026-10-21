@@ -1,0 +1,24 @@
+Loading fine-tuned embedding metadata...
+Embedding metadata: (73813, 11)
+
+Loading fine-tuned embeddings...
+H5 keys: ['image_embeddings']
+Embeddings: (73813, 768)
+
+Loading factor scores...
+Factor scores: (74220, 8)
+Factor columns: ['sample_id', 'barcode', 'spatial_x', 'spatial_y', 't_cell_infiltration', 'cytotoxicity', 'tgfb_caf', 'proliferation']
+
+Joining by sample_id + barcode...
+Rows missing factor scores: 0
+
+Final dataset:
+X: (73813, 768)
+y: (73813, 4)
+metadata: (73813, 16)
+Samples: 24
+
+Saved: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned_factor_baseline/omiclip_finetuned_factor_dataset.npz
+Saved: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned_factor_baseline/omiclip_finetuned_factor_metadata.csv
+
+Fine-tuned OmiCLIP factor dataset ready.

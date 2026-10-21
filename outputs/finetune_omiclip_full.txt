@@ -1,0 +1,229 @@
+================================
+FULL OmiCLIP ccRCC FINE-TUNING
+================================
+
+GPU: NVIDIA RTX 6000 Ada Generation
+GPU VRAM: 47.37 GB
+
+Loading pair table...
+Pair table: (73813, 11)
+Columns: ['sample_id', 'patient_id', 'barcode', 'patch_h5_path', 'patch_index', 'st_h5ad_path', 'st_row_index', 'gene_sentence', 'gene_count', 'coord_x', 'coord_y']
+Gene sentence column: gene_sentence
+
+Validating patch indices...
+INT1: pairs=1,032, patches=1,032, indices=0..1031, OK=True
+INT10: pairs=1,971, patches=1,971, indices=0..1970, OK=True
+INT11: pairs=1,400, patches=1,400, indices=0..1399, OK=True
+INT12: pairs=1,450, patches=1,450, indices=0..1449, OK=True
+INT13: pairs=4,359, patches=4,359, indices=0..4358, OK=True
+INT14: pairs=4,559, patches=4,559, indices=0..4558, OK=True
+INT15: pairs=4,940, patches=4,940, indices=0..4939, OK=True
+INT16: pairs=3,202, patches=3,202, indices=0..3201, OK=True
+INT17: pairs=3,584, patches=3,584, indices=0..3583, OK=True
+INT18: pairs=4,914, patches=4,914, indices=0..4913, OK=True
+INT19: pairs=4,948, patches=4,948, indices=0..4947, OK=True
+INT2: pairs=2,541, patches=2,541, indices=0..2540, OK=True
+INT20: pairs=4,860, patches=4,860, indices=0..4859, OK=True
+INT21: pairs=4,960, patches=4,960, indices=0..4959, OK=True
+INT22: pairs=3,826, patches=3,826, indices=0..3825, OK=True
+INT23: pairs=4,755, patches=4,755, indices=0..4754, OK=True
+INT24: pairs=4,483, patches=4,483, indices=0..4482, OK=True
+INT3: pairs=1,973, patches=1,973, indices=0..1972, OK=True
+INT4: pairs=1,255, patches=1,255, indices=0..1254, OK=True
+INT5: pairs=1,158, patches=1,158, indices=0..1157, OK=True
+INT6: pairs=1,667, patches=1,667, indices=0..1666, OK=True
+INT7: pairs=2,361, patches=2,361, indices=0..2360, OK=True
+INT8: pairs=1,924, patches=1,924, indices=0..1923, OK=True
+INT9: pairs=1,691, patches=1,691, indices=0..1690, OK=True
+All patch indices valid.
+
+Split sizes:
+Train: 45981 ['INT1', 'INT2', 'INT3', 'INT4', 'INT5', 'INT6', 'INT7', 'INT8', 'INT9', 'INT10', 'INT11', 'INT12', 'INT13', 'INT14', 'INT15', 'INT16', 'INT17', 'INT18']
+Validation: 14768 ['INT19', 'INT20', 'INT21']
+Held-out test: 13064 ['INT22', 'INT23', 'INT24']
+
+IMPORTANT:
+INT22–INT24 are NOT used during fine-tuning.
+
+Loading pretrained OmiCLIP...
+OmiCLIP loaded in 0.62 minutes
+Enabling gradient checkpointing...
+Total parameters: 638,450,177
+Trainable parameters: 638,450,177
+
+Preparing datasets...
+Preparing patch access for 18 samples...
+Preparing patch access for 3 samples...
+Training batches: 1436
+Validation batches: 462
+Using BF16 mixed precision
+
+Training configuration:
+Epochs: 5
+Batch size: 32
+Learning rate: 2e-06
+Weight decay: 0.01
+Total optimizer steps: 7180
+
+==============================
+Epoch 1/5
+==============================
+batch   100/ 1436 | loss 2.0315 | sim 0.4068 | retrieval 0.3125 | lr 5.63e-07 | ETA 7.7 min
+batch   200/ 1436 | loss 1.4273 | sim 0.4300 | retrieval 0.5156 | lr 1.12e-06 | ETA 6.9 min
+batch   300/ 1436 | loss 1.0015 | sim 0.4465 | retrieval 0.5312 | lr 1.68e-06 | ETA 6.3 min
+batch   400/ 1436 | loss 0.7426 | sim 0.4611 | retrieval 0.7344 | lr 2.00e-06 | ETA 5.7 min
+batch   500/ 1436 | loss 0.9265 | sim 0.4587 | retrieval 0.7188 | lr 2.00e-06 | ETA 5.1 min
+batch   600/ 1436 | loss 0.6555 | sim 0.4661 | retrieval 0.7344 | lr 1.99e-06 | ETA 4.6 min
+batch   700/ 1436 | loss 0.7629 | sim 0.4603 | retrieval 0.6875 | lr 1.99e-06 | ETA 4.0 min
+batch   800/ 1436 | loss 0.7622 | sim 0.4664 | retrieval 0.6562 | lr 1.98e-06 | ETA 3.5 min
+batch   900/ 1436 | loss 0.6360 | sim 0.4646 | retrieval 0.7188 | lr 1.97e-06 | ETA 2.9 min
+batch  1000/ 1436 | loss 0.7069 | sim 0.4615 | retrieval 0.6719 | lr 1.96e-06 | ETA 2.4 min
+batch  1100/ 1436 | loss 0.3732 | sim 0.4684 | retrieval 0.8438 | lr 1.94e-06 | ETA 1.8 min
+batch  1200/ 1436 | loss 0.4618 | sim 0.4658 | retrieval 0.7969 | lr 1.93e-06 | ETA 1.3 min
+batch  1300/ 1436 | loss 0.5484 | sim 0.4647 | retrieval 0.7969 | lr 1.91e-06 | ETA 0.7 min
+batch  1400/ 1436 | loss 0.4727 | sim 0.4697 | retrieval 0.7969 | lr 1.89e-06 | ETA 0.2 min
+
+Validation...
+
+Epoch results:
+Train loss: 0.950378
+Val loss: 3.389409
+Train similarity: 0.452229
+Val similarity: 0.441181
+Train retrieval: 0.644118
+Val retrieval: 0.137967
+Saving checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/last.pt
+Saving checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/best.pt
+
+NEW BEST MODEL
+Best validation loss: 3.389409
+
+==============================
+Epoch 2/5
+==============================
+batch   100/ 1436 | loss 0.2769 | sim 0.4754 | retrieval 0.8750 | lr 1.86e-06 | ETA 7.1 min
+batch   200/ 1436 | loss 0.5166 | sim 0.4722 | retrieval 0.7656 | lr 1.83e-06 | ETA 6.6 min
+batch   300/ 1436 | loss 0.4740 | sim 0.4698 | retrieval 0.8125 | lr 1.81e-06 | ETA 6.1 min
+batch   400/ 1436 | loss 0.5329 | sim 0.4756 | retrieval 0.7656 | lr 1.78e-06 | ETA 5.6 min
+batch   500/ 1436 | loss 0.3154 | sim 0.4716 | retrieval 0.8750 | lr 1.75e-06 | ETA 5.0 min
+batch   600/ 1436 | loss 0.6105 | sim 0.4655 | retrieval 0.7188 | lr 1.72e-06 | ETA 4.5 min
+batch   700/ 1436 | loss 0.5078 | sim 0.4690 | retrieval 0.7500 | lr 1.68e-06 | ETA 4.0 min
+batch   800/ 1436 | loss 0.4227 | sim 0.4762 | retrieval 0.7344 | lr 1.65e-06 | ETA 3.4 min
+batch   900/ 1436 | loss 0.4268 | sim 0.4697 | retrieval 0.7812 | lr 1.61e-06 | ETA 2.9 min
+batch  1000/ 1436 | loss 0.2930 | sim 0.4759 | retrieval 0.8750 | lr 1.58e-06 | ETA 2.4 min
+batch  1100/ 1436 | loss 0.5373 | sim 0.4698 | retrieval 0.7500 | lr 1.54e-06 | ETA 1.8 min
+batch  1200/ 1436 | loss 0.2612 | sim 0.4771 | retrieval 0.8750 | lr 1.50e-06 | ETA 1.3 min
+batch  1300/ 1436 | loss 0.3558 | sim 0.4723 | retrieval 0.8281 | lr 1.46e-06 | ETA 0.7 min
+batch  1400/ 1436 | loss 0.3674 | sim 0.4765 | retrieval 0.8281 | lr 1.42e-06 | ETA 0.2 min
+
+Validation...
+
+Epoch results:
+Train loss: 0.446610
+Val loss: 3.423119
+Train similarity: 0.472791
+Val similarity: 0.440991
+Train retrieval: 0.805721
+Val retrieval: 0.147887
+Saving checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/last.pt
+Best validation loss: 3.389409
+
+==============================
+Epoch 3/5
+==============================
+batch   100/ 1436 | loss 0.6279 | sim 0.4796 | retrieval 0.7656 | lr 1.36e-06 | ETA 7.0 min
+batch   200/ 1436 | loss 0.3629 | sim 0.4793 | retrieval 0.7969 | lr 1.32e-06 | ETA 6.6 min
+batch   300/ 1436 | loss 0.3203 | sim 0.4800 | retrieval 0.8750 | lr 1.27e-06 | ETA 6.1 min
+batch   400/ 1436 | loss 0.3465 | sim 0.4741 | retrieval 0.8125 | lr 1.23e-06 | ETA 5.6 min
+batch   500/ 1436 | loss 0.3398 | sim 0.4761 | retrieval 0.9219 | lr 1.18e-06 | ETA 5.1 min
+batch   600/ 1436 | loss 0.3428 | sim 0.4784 | retrieval 0.8281 | lr 1.14e-06 | ETA 4.5 min
+batch   700/ 1436 | loss 0.3102 | sim 0.4772 | retrieval 0.8594 | lr 1.09e-06 | ETA 4.0 min
+batch   800/ 1436 | loss 0.2331 | sim 0.4811 | retrieval 0.8750 | lr 1.04e-06 | ETA 3.4 min
+batch   900/ 1436 | loss 0.3721 | sim 0.4761 | retrieval 0.8906 | lr 9.99e-07 | ETA 2.9 min
+batch  1000/ 1436 | loss 0.3737 | sim 0.4783 | retrieval 0.8438 | lr 9.53e-07 | ETA 2.4 min
+batch  1100/ 1436 | loss 0.1668 | sim 0.4841 | retrieval 0.9062 | lr 9.07e-07 | ETA 1.8 min
+batch  1200/ 1436 | loss 0.1816 | sim 0.4821 | retrieval 0.9531 | lr 8.61e-07 | ETA 1.3 min
+batch  1300/ 1436 | loss 0.1614 | sim 0.4755 | retrieval 0.9688 | lr 8.16e-07 | ETA 0.7 min
+batch  1400/ 1436 | loss 0.4014 | sim 0.4736 | retrieval 0.8125 | lr 7.71e-07 | ETA 0.2 min
+
+Validation...
+
+Epoch results:
+Train loss: 0.350068
+Val loss: 3.598548
+Train similarity: 0.477029
+Val similarity: 0.439118
+Train retrieval: 0.848364
+Val retrieval: 0.152560
+Saving checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/last.pt
+Best validation loss: 3.389409
+
+==============================
+Epoch 4/5
+==============================
+batch   100/ 1436 | loss 0.2183 | sim 0.4833 | retrieval 0.9531 | lr 7.10e-07 | ETA 7.0 min
+batch   200/ 1436 | loss 0.2932 | sim 0.4833 | retrieval 0.9531 | lr 6.66e-07 | ETA 6.6 min
+batch   300/ 1436 | loss 0.2851 | sim 0.4826 | retrieval 0.8438 | lr 6.23e-07 | ETA 6.1 min
+batch   400/ 1436 | loss 0.3844 | sim 0.4736 | retrieval 0.8125 | lr 5.81e-07 | ETA 5.6 min
+batch   500/ 1436 | loss 0.1889 | sim 0.4874 | retrieval 0.9219 | lr 5.40e-07 | ETA 5.1 min
+batch   600/ 1436 | loss 0.4185 | sim 0.4847 | retrieval 0.8281 | lr 4.99e-07 | ETA 4.5 min
+batch   700/ 1436 | loss 0.1784 | sim 0.4796 | retrieval 0.9062 | lr 4.60e-07 | ETA 4.0 min
+batch   800/ 1436 | loss 0.2362 | sim 0.4806 | retrieval 0.8906 | lr 4.22e-07 | ETA 3.4 min
+batch   900/ 1436 | loss 0.5040 | sim 0.4758 | retrieval 0.8281 | lr 3.85e-07 | ETA 2.9 min
+batch  1000/ 1436 | loss 0.4458 | sim 0.4800 | retrieval 0.7500 | lr 3.49e-07 | ETA 2.4 min
+batch  1100/ 1436 | loss 0.4574 | sim 0.4823 | retrieval 0.8438 | lr 3.15e-07 | ETA 1.8 min
+batch  1200/ 1436 | loss 0.3147 | sim 0.4798 | retrieval 0.8594 | lr 2.82e-07 | ETA 1.3 min
+batch  1300/ 1436 | loss 0.2397 | sim 0.4814 | retrieval 0.8750 | lr 2.51e-07 | ETA 0.7 min
+batch  1400/ 1436 | loss 0.2028 | sim 0.4787 | retrieval 0.9062 | lr 2.21e-07 | ETA 0.2 min
+
+Validation...
+
+Epoch results:
+Train loss: 0.293554
+Val loss: 3.769342
+Train similarity: 0.482557
+Val similarity: 0.435898
+Train retrieval: 0.872976
+Val retrieval: 0.150190
+Saving checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/last.pt
+Best validation loss: 3.389409
+
+==============================
+Epoch 5/5
+==============================
+batch   100/ 1436 | loss 0.4015 | sim 0.4833 | retrieval 0.8750 | lr 1.83e-07 | ETA 7.1 min
+batch   200/ 1436 | loss 0.1774 | sim 0.4891 | retrieval 0.9062 | lr 1.58e-07 | ETA 6.6 min
+batch   300/ 1436 | loss 0.2756 | sim 0.4835 | retrieval 0.8438 | lr 1.34e-07 | ETA 6.1 min
+batch   400/ 1436 | loss 0.2152 | sim 0.4797 | retrieval 0.9062 | lr 1.12e-07 | ETA 5.6 min
+batch   500/ 1436 | loss 0.2822 | sim 0.4849 | retrieval 0.8594 | lr 9.15e-08 | ETA 5.1 min
+batch   600/ 1436 | loss 0.2770 | sim 0.4901 | retrieval 0.8594 | lr 7.32e-08 | ETA 4.5 min
+batch   700/ 1436 | loss 0.4147 | sim 0.4850 | retrieval 0.8281 | lr 5.69e-08 | ETA 4.0 min
+batch   800/ 1436 | loss 0.2056 | sim 0.4866 | retrieval 0.8906 | lr 4.26e-08 | ETA 3.4 min
+batch   900/ 1436 | loss 0.2546 | sim 0.4874 | retrieval 0.9219 | lr 3.03e-08 | ETA 2.9 min
+batch  1000/ 1436 | loss 0.2495 | sim 0.4879 | retrieval 0.8594 | lr 2.01e-08 | ETA 2.4 min
+batch  1100/ 1436 | loss 0.1612 | sim 0.4829 | retrieval 0.9375 | lr 1.20e-08 | ETA 1.8 min
+batch  1200/ 1436 | loss 0.1526 | sim 0.4875 | retrieval 0.9219 | lr 5.90e-09 | ETA 1.3 min
+batch  1300/ 1436 | loss 0.4016 | sim 0.4874 | retrieval 0.8281 | lr 1.96e-09 | ETA 0.7 min
+batch  1400/ 1436 | loss 0.3008 | sim 0.4844 | retrieval 0.8750 | lr 1.37e-10 | ETA 0.2 min
+
+Validation...
+
+Epoch results:
+Train loss: 0.261627
+Val loss: 3.814676
+Train similarity: 0.485584
+Val similarity: 0.435312
+Train retrieval: 0.886001
+Val retrieval: 0.149682
+Saving checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/last.pt
+Best validation loss: 3.389409
+
+================================
+FULL OmiCLIP FINE-TUNING DONE
+================================
+Training time: 0.72 hours
+Best checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/best.pt
+Last checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/last.pt
+History: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/training_history.csv
+
+INT22–INT24 remained completely held out.

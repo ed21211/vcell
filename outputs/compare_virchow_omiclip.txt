@@ -1,0 +1,11 @@
+
+Virchow2 versus pretrained OmiCLIP
+Held-out test samples: INT22–INT24
+
+             factor  virchow_pearson  omiclip_pearson  pearson_difference  virchow_spearman  omiclip_spearman  spearman_difference  virchow_r2  omiclip_r2  r2_difference  virchow_rmse  omiclip_rmse  rmse_difference better_pearson
+t_cell_infiltration         0.229219        -0.013818           -0.243038          0.250270         -0.012332            -0.262601   -0.288890   -0.187190       0.101700      0.260926      0.250420        -0.010506       Virchow2
+       cytotoxicity         0.226874         0.005373           -0.221501          0.237069          0.009213            -0.227856   -0.042549   -0.078037      -0.035488      0.242935      0.247035         0.004100       Virchow2
+           tgfb_caf         0.517202         0.192786           -0.324416          0.481050          0.184332            -0.296718    0.106854   -0.419942      -0.526796      0.420421      0.530101         0.109680       Virchow2
+      proliferation         0.160934         0.167143            0.006208          0.157197          0.188195             0.030998   -0.300494   -0.043070       0.257424      0.219212      0.196321        -0.022891        OmiCLIP
+
+Saved: /media/rokny/DATA2/Elsa/vcell/outputs/virchow_vs_omiclip_test_metrics.csv

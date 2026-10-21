@@ -1,0 +1,18 @@
+Pairs:       73,813
+Samples:     24
+Patients:    24
+Batch size:  16
+Device:      cuda
+Checkpoint:  /media/rokny/DATA2/Elsa/vcell/models/omiclip/checkpoint.pt
+Output HDF5: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip/ccrcc_omiclip_embeddings.h5
+
+Embedding dimension: 768
+
+====================================
+OmiCLIP embedding extraction complete
+====================================
+Pairs processed: 73,813
+Mean matched similarity: 0.3517
+Median matched similarity: 0.3515
+Embeddings: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip/ccrcc_omiclip_embeddings.h5
+Metadata:   /media/rokny/DATA2/Elsa/vcell/outputs/omiclip/ccrcc_omiclip_metadata.csv

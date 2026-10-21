@@ -1,0 +1,74 @@
+================================
+OmiCLIP + MLP FACTOR PREDICTION
+================================
+
+Device: cuda
+GPU: NVIDIA RTX 6000 Ada Generation
+
+Loading dataset...
+X: (73813, 768)
+y: (73813, 4)
+metadata: (73813, 11)
+Factors: ['t_cell_infiltration' 'cytotoxicity' 'tgfb_caf' 'proliferation']
+
+Split sizes:
+Train: 45981 ['INT1', 'INT2', 'INT3', 'INT4', 'INT5', 'INT6', 'INT7', 'INT8', 'INT9', 'INT10', 'INT11', 'INT12', 'INT13', 'INT14', 'INT15', 'INT16', 'INT17', 'INT18']
+Val: 14768 ['INT19', 'INT20', 'INT21']
+Test: 13064 ['INT22', 'INT23', 'INT24']
+
+Standardising using training split only...
+
+Model:
+FactorMLP(
+  (net): Sequential(
+    (0): Linear(in_features=768, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.25, inplace=False)
+    (3): Linear(in_features=256, out_features=64, bias=True)
+    (4): ReLU()
+    (5): Linear(in_features=64, out_features=4, bias=True)
+  )
+)
+Trainable parameters: 213,572
+
+Training...
+Epoch 001 | train 0.797309 | val 0.887156
+Epoch 002 | train 0.743290 | val 0.873691
+Epoch 003 | train 0.726961 | val 0.908812
+Epoch 004 | train 0.716012 | val 0.895105
+Epoch 005 | train 0.709552 | val 0.888517
+Epoch 006 | train 0.702160 | val 0.884736
+Epoch 007 | train 0.697702 | val 0.883976
+Epoch 008 | train 0.694440 | val 0.892341
+Epoch 009 | train 0.689052 | val 0.886568
+Epoch 010 | train 0.685012 | val 0.909051
+Epoch 011 | train 0.680825 | val 0.893807
+Epoch 012 | train 0.678492 | val 0.888439
+
+Early stopping at epoch 12.
+
+Best validation loss: 0.8736913204193115
+
+Predicting...
+
+Results:
+    split               factor       mse  ...        r2   pearson  spearman
+0   train  t_cell_infiltration  0.041065  ...  0.251705  0.502449  0.404423
+1   train         cytotoxicity  0.044788  ...  0.184103  0.429932  0.328480
+2   train             tgfb_caf  0.117506  ...  0.639359  0.799765  0.806118
+3   train        proliferation  0.030793  ...  0.081259  0.286110  0.276591
+4     val  t_cell_infiltration  0.040396  ... -0.017890  0.161549  0.103456
+5     val         cytotoxicity  0.049963  ... -0.029563  0.113113  0.098385
+6     val             tgfb_caf  0.349197  ...  0.170725  0.494157  0.508098
+7     val        proliferation  0.026033  ... -0.028420  0.040283  0.048627
+8    test  t_cell_infiltration  0.054636  ... -0.034332  0.040105  0.041934
+9    test         cytotoxicity  0.058014  ... -0.024828  0.051233  0.073707
+10   test             tgfb_caf  0.274466  ... -0.386890  0.151947  0.126783
+11   test        proliferation  0.038874  ... -0.052062  0.098743  0.104946
+
+[12 rows x 7 columns]
+
+Saved metrics: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_factor_mlp/mlp_metrics.csv
+Saved predictions: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_factor_mlp/mlp_predictions.csv
+Saved model: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_factor_mlp/mlp_model.pt
+Saved history: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_factor_mlp/training_history.csv

@@ -1,0 +1,44 @@
+==============================================
+EXTRACT FINE-TUNED OmiCLIP IMAGE EMBEDDINGS
+==============================================
+
+GPU: NVIDIA RTX 6000 Ada Generation
+
+Pair table: (73813, 11)
+Samples: 24
+Rows: 73,813
+Constructing pretrained OmiCLIP architecture...
+Base model loaded in 7.3 sec
+
+Loading fine-tuned checkpoint: /media/rokny/DATA2/Elsa/vcell/models/omiclip_ccrcc_full/best.pt
+Missing keys: 0
+Unexpected keys: 0
+
+Fine-tuned checkpoint loaded.
+Best epoch: 1
+Validation loss: 3.3894086705514694
+
+Using BF16 inference
+Embedding dimension: 768
+
+Writing: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned/ccrcc_omiclip_finetuned_embeddings.h5
+batch  100/1154 | 6,400/73,813 rows | 370.1 rows/s | ETA 3.0 min
+batch  200/1154 | 12,800/73,813 rows | 370.6 rows/s | ETA 2.7 min
+batch  300/1154 | 19,200/73,813 rows | 369.2 rows/s | ETA 2.5 min
+batch  400/1154 | 25,600/73,813 rows | 366.2 rows/s | ETA 2.2 min
+batch  500/1154 | 32,000/73,813 rows | 364.9 rows/s | ETA 1.9 min
+batch  600/1154 | 38,400/73,813 rows | 364.1 rows/s | ETA 1.6 min
+batch  700/1154 | 44,800/73,813 rows | 363.5 rows/s | ETA 1.3 min
+batch  800/1154 | 51,200/73,813 rows | 362.6 rows/s | ETA 1.0 min
+batch  900/1154 | 57,600/73,813 rows | 362.5 rows/s | ETA 0.7 min
+batch 1000/1154 | 64,000/73,813 rows | 362.0 rows/s | ETA 0.5 min
+batch 1100/1154 | 70,400/73,813 rows | 361.3 rows/s | ETA 0.2 min
+batch 1154/1154 | 73,813/73,813 rows | 360.8 rows/s | ETA 0.0 min
+
+==============================================
+FINE-TUNED EMBEDDING EXTRACTION COMPLETE
+==============================================
+Embeddings: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned/ccrcc_omiclip_finetuned_embeddings.h5
+Metadata: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned/ccrcc_omiclip_finetuned_metadata.csv
+Shape: (73813, 768)
+Time: 3.4 min

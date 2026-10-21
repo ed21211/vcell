@@ -1,0 +1,35 @@
+Loading joined OmiCLIP ccRCC dataset...
+X: (73813, 768)
+y: (73813, 4)
+metadata: (73813, 15)
+factors: ['t_cell_infiltration' 'cytotoxicity' 'tgfb_caf' 'proliferation']
+
+Split sizes:
+Train: 45981 ['INT1', 'INT2', 'INT3', 'INT4', 'INT5', 'INT6', 'INT7', 'INT8', 'INT9', 'INT10', 'INT11', 'INT12', 'INT13', 'INT14', 'INT15', 'INT16', 'INT17', 'INT18']
+Val: 14768 ['INT19', 'INT20', 'INT21']
+Test: 13064 ['INT22', 'INT23', 'INT24']
+
+Standardising X and y using training split only...
+Training Ridge regression baseline...
+Predicting...
+
+Results:
+    split               factor       mse  ...        r2   pearson  spearman
+0   train  t_cell_infiltration  0.041843  ...  0.237516  0.487408  0.397376
+1   train         cytotoxicity  0.045832  ...  0.165083  0.406376  0.324202
+2   train             tgfb_caf  0.113314  ...  0.652223  0.807607  0.814801
+3   train        proliferation  0.030215  ...  0.098484  0.313849  0.295300
+4     val  t_cell_infiltration  0.044762  ... -0.127921  0.131461  0.092485
+5     val         cytotoxicity  0.054249  ... -0.117875  0.100282  0.129446
+6     val             tgfb_caf  0.375652  ...  0.107898  0.432278  0.479282
+7     val        proliferation  0.028479  ... -0.125046  0.057965  0.047014
+8    test  t_cell_infiltration  0.064763  ... -0.226046 -0.046322 -0.064632
+9    test         cytotoxicity  0.067051  ... -0.184456 -0.012336 -0.024983
+10   test             tgfb_caf  0.289550  ... -0.463109  0.163941  0.125132
+11   test        proliferation  0.040981  ... -0.109082 -0.011803 -0.013596
+
+[12 rows x 7 columns]
+
+Saved metrics: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned_e2_lr1e6_factor_baseline/ridge_baseline_metrics.csv
+Saved predictions: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned_e2_lr1e6_factor_baseline/ridge_baseline_predictions.csv
+Saved model: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_finetuned_e2_lr1e6_factor_baseline/ridge_baseline_model.joblib
