@@ -1,0 +1,364 @@
+Sample column:  id
+Patient column: patient
+Top genes:      50
+
+Skipping TENX105; missing:
+  datasets/hest_ccrcc/patches/TENX105.h5
+  datasets/hest_ccrcc/st/TENX105.h5ad
+
+Processing INT24
+  Patient: Patient 1
+  Patches: datasets/hest_ccrcc/patches/INT24.h5
+  ST:      datasets/hest_ccrcc/st/INT24.h5ad
+  Patch count: 4483
+  ST shape:    (4510, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4483
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT23
+  Patient: Patient 2
+  Patches: datasets/hest_ccrcc/patches/INT23.h5
+  ST:      datasets/hest_ccrcc/st/INT23.h5ad
+  Patch count: 4755
+  ST shape:    (4755, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4755
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT22
+  Patient: Patient 3
+  Patches: datasets/hest_ccrcc/patches/INT22.h5
+  ST:      datasets/hest_ccrcc/st/INT22.h5ad
+  Patch count: 3826
+  ST shape:    (3829, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          3826
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT21
+  Patient: Patient 4
+  Patches: datasets/hest_ccrcc/patches/INT21.h5
+  ST:      datasets/hest_ccrcc/st/INT21.h5ad
+  Patch count: 4960
+  ST shape:    (4975, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4960
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT20
+  Patient: Patient 5
+  Patches: datasets/hest_ccrcc/patches/INT20.h5
+  ST:      datasets/hest_ccrcc/st/INT20.h5ad
+  Patch count: 4860
+  ST shape:    (4860, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4860
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT19
+  Patient: Patient 6
+  Patches: datasets/hest_ccrcc/patches/INT19.h5
+  ST:      datasets/hest_ccrcc/st/INT19.h5ad
+  Patch count: 4948
+  ST shape:    (4948, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4948
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT18
+  Patient: Patient 7
+  Patches: datasets/hest_ccrcc/patches/INT18.h5
+  ST:      datasets/hest_ccrcc/st/INT18.h5ad
+  Patch count: 4914
+  ST shape:    (4915, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4914
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT17
+  Patient: Patient 8
+  Patches: datasets/hest_ccrcc/patches/INT17.h5
+  ST:      datasets/hest_ccrcc/st/INT17.h5ad
+  Patch count: 3584
+  ST shape:    (3585, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          3584
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT16
+  Patient: Patient 9
+  Patches: datasets/hest_ccrcc/patches/INT16.h5
+  ST:      datasets/hest_ccrcc/st/INT16.h5ad
+  Patch count: 3202
+  ST shape:    (3206, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          3202
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT15
+  Patient: Patient 10
+  Patches: datasets/hest_ccrcc/patches/INT15.h5
+  ST:      datasets/hest_ccrcc/st/INT15.h5ad
+  Patch count: 4940
+  ST shape:    (4940, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4940
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT14
+  Patient: Patient 11
+  Patches: datasets/hest_ccrcc/patches/INT14.h5
+  ST:      datasets/hest_ccrcc/st/INT14.h5ad
+  Patch count: 4559
+  ST shape:    (4562, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4559
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT13
+  Patient: Patient 12
+  Patches: datasets/hest_ccrcc/patches/INT13.h5
+  ST:      datasets/hest_ccrcc/st/INT13.h5ad
+  Patch count: 4359
+  ST shape:    (4359, 17943)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          4359
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT12
+  Patient: Patient 13
+  Patches: datasets/hest_ccrcc/patches/INT12.h5
+  ST:      datasets/hest_ccrcc/st/INT12.h5ad
+  Patch count: 1450
+  ST shape:    (1451, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1450
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT11
+  Patient: Patient 14
+  Patches: datasets/hest_ccrcc/patches/INT11.h5
+  ST:      datasets/hest_ccrcc/st/INT11.h5ad
+  Patch count: 1400
+  ST shape:    (1439, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1400
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT10
+  Patient: Patient 15
+  Patches: datasets/hest_ccrcc/patches/INT10.h5
+  ST:      datasets/hest_ccrcc/st/INT10.h5ad
+  Patch count: 1971
+  ST shape:    (1983, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1971
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT9
+  Patient: Patient 16
+  Patches: datasets/hest_ccrcc/patches/INT9.h5
+  ST:      datasets/hest_ccrcc/st/INT9.h5ad
+  Patch count: 1691
+  ST shape:    (1696, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1691
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT8
+  Patient: Patient 17
+  Patches: datasets/hest_ccrcc/patches/INT8.h5
+  ST:      datasets/hest_ccrcc/st/INT8.h5ad
+  Patch count: 1924
+  ST shape:    (1949, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1924
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT7
+  Patient: Patient 18
+  Patches: datasets/hest_ccrcc/patches/INT7.h5
+  ST:      datasets/hest_ccrcc/st/INT7.h5ad
+  Patch count: 2361
+  ST shape:    (2374, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          2361
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT6
+  Patient: Patient 19
+  Patches: datasets/hest_ccrcc/patches/INT6.h5
+  ST:      datasets/hest_ccrcc/st/INT6.h5ad
+  Patch count: 1667
+  ST shape:    (1678, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1667
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT5
+  Patient: Patient 20
+  Patches: datasets/hest_ccrcc/patches/INT5.h5
+  ST:      datasets/hest_ccrcc/st/INT5.h5ad
+  Patch count: 1158
+  ST shape:    (1186, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1158
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT4
+  Patient: Patient 21
+  Patches: datasets/hest_ccrcc/patches/INT4.h5
+  ST:      datasets/hest_ccrcc/st/INT4.h5ad
+  Patch count: 1255
+  ST shape:    (1349, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1255
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT3
+  Patient: Patient 22
+  Patches: datasets/hest_ccrcc/patches/INT3.h5
+  ST:      datasets/hest_ccrcc/st/INT3.h5ad
+  Patch count: 1973
+  ST shape:    (2007, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1973
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT2
+  Patient: Patient 23
+  Patches: datasets/hest_ccrcc/patches/INT2.h5
+  ST:      datasets/hest_ccrcc/st/INT2.h5ad
+  Patch count: 2541
+  ST shape:    (2580, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          2541
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+Processing INT1
+  Patient: Patient 24
+  Patches: datasets/hest_ccrcc/patches/INT1.h5
+  ST:      datasets/hest_ccrcc/st/INT1.h5ad
+  Patch count: 1032
+  ST shape:    (1084, 36601)
+  ST barcodes taken from adata.obs_names
+  Gene names taken from adata.var_names
+  Expression source: adata.X
+  Matched pairs:          1032
+  Unmatched patches:      0
+  Empty gene sentences:   0
+  Usable match rate:      100.00%
+
+========================================
+OmiCLIP pair preparation complete
+========================================
+Samples represented: 24
+Patients represented: 24
+Total matched pairs:  73813
+Output:               /media/rokny/DATA2/Elsa/vcell/datasets/omiclip/ccrcc_pairs.csv
+Samples skipped for missing files: 1
+['TENX105']
+
+Output columns:
+['sample_id', 'patient_id', 'barcode', 'patch_h5_path', 'patch_index', 'st_h5ad_path', 'st_row_index', 'gene_sentence', 'gene_count', 'coord_x', 'coord_y']
+
+First rows:
+sample_id patient_id            barcode  patch_index  gene_count
+     INT1 Patient 24 AAACAGAGCGACTCCT-1            0          50
+     INT1 Patient 24 AAACCACTACACAGAT-1            1          50
+     INT1 Patient 24 AAACGACAGTCTTGCC-1            2          50
+     INT1 Patient 24 AAACGAGACGGTTGAT-1            3          50
+     INT1 Patient 24 AAACGCCCGAGATCGG-1            4          50

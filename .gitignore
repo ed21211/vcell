@@ -1,0 +1,21 @@
+# environments, caches, tokens
+venv/
+.hf_home/
+__pycache__/
+*.pyc
+
+# big data, models, third-party code
+datasets/
+features/
+models/
+external/
+
+# heavy artefacts anywhere
+*.h5
+*.h5ad
+*.npz
+*.pt
+*.joblib
+*.tif
+*predictions.csv
+*metadata.csv

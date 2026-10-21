@@ -1,0 +1,22 @@
+Loading OmiCLIP metadata...
+Loading factor scores...
+OmiCLIP duplicate keys: 0
+Factor duplicate keys:   0
+
+Join summary
+OmiCLIP rows: 73,813
+Factor rows:  74,220
+Matched rows: 73,813
+Match rate:   100.00%
+Rows removed for missing factor scores: 0
+
+Loading OmiCLIP image embeddings...
+Full image embedding shape: (73813, 768)
+
+Final dataset
+X shape: (73813, 768)
+y shape: (73813, 4)
+Samples: 24
+
+Saved dataset:  /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_factor_baseline/omiclip_factor_dataset.npz
+Saved metadata: /media/rokny/DATA2/Elsa/vcell/outputs/omiclip_factor_baseline/omiclip_factor_metadata.csv

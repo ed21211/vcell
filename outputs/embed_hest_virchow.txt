@@ -1,0 +1,221 @@
+Device: cuda
+Samples to process: ['INT24', 'INT23', 'INT22', 'INT21', 'INT20', 'INT19', 'INT18', 'INT17', 'INT16', 'INT15', 'INT14', 'INT13', 'INT12', 'INT11', 'INT10', 'INT9', 'INT8', 'INT7', 'INT6', 'INT5', 'INT4', 'INT3', 'INT2', 'INT1']
+Loading Virchow model: hf_hub:paige-ai/Virchow2
+Model loaded.
+Transform config: {'input_size': [3, 224, 224], 'interpolation': 'bicubic', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225], 'crop_pct': 1.0, 'crop_mode': 'center'}
+
+Processing sample: INT24
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT24.h5
+Total patches: 4483
+Using patches: 4483
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT24_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT24_barcodes.csv
+Embedding shape:  (4483, 2560)
+
+Processing sample: INT23
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT23.h5
+Total patches: 4755
+Using patches: 4755
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT23_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT23_barcodes.csv
+Embedding shape:  (4755, 2560)
+
+Processing sample: INT22
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT22.h5
+Total patches: 3826
+Using patches: 3826
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT22_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT22_barcodes.csv
+Embedding shape:  (3826, 2560)
+
+Processing sample: INT21
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT21.h5
+Total patches: 4960
+Using patches: 4960
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT21_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT21_barcodes.csv
+Embedding shape:  (4960, 2560)
+
+Processing sample: INT20
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT20.h5
+Total patches: 4860
+Using patches: 4860
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT20_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT20_barcodes.csv
+Embedding shape:  (4860, 2560)
+
+Processing sample: INT19
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT19.h5
+Total patches: 4948
+Using patches: 4948
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT19_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT19_barcodes.csv
+Embedding shape:  (4948, 2560)
+
+Processing sample: INT18
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT18.h5
+Total patches: 4914
+Using patches: 4914
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT18_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT18_barcodes.csv
+Embedding shape:  (4914, 2560)
+
+Processing sample: INT17
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT17.h5
+Total patches: 3584
+Using patches: 3584
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT17_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT17_barcodes.csv
+Embedding shape:  (3584, 2560)
+
+Processing sample: INT16
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT16.h5
+Total patches: 3202
+Using patches: 3202
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT16_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT16_barcodes.csv
+Embedding shape:  (3202, 2560)
+
+Processing sample: INT15
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT15.h5
+Total patches: 4940
+Using patches: 4940
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT15_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT15_barcodes.csv
+Embedding shape:  (4940, 2560)
+
+Processing sample: INT14
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT14.h5
+Total patches: 4559
+Using patches: 4559
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT14_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT14_barcodes.csv
+Embedding shape:  (4559, 2560)
+
+Processing sample: INT13
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT13.h5
+Total patches: 4359
+Using patches: 4359
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT13_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT13_barcodes.csv
+Embedding shape:  (4359, 2560)
+
+Processing sample: INT12
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT12.h5
+Total patches: 1450
+Using patches: 1450
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT12_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT12_barcodes.csv
+Embedding shape:  (1450, 2560)
+
+Processing sample: INT11
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT11.h5
+Total patches: 1400
+Using patches: 1400
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT11_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT11_barcodes.csv
+Embedding shape:  (1400, 2560)
+
+Processing sample: INT10
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT10.h5
+Total patches: 1971
+Using patches: 1971
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT10_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT10_barcodes.csv
+Embedding shape:  (1971, 2560)
+
+Processing sample: INT9
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT9.h5
+Total patches: 1691
+Using patches: 1691
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT9_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT9_barcodes.csv
+Embedding shape:  (1691, 2560)
+
+Processing sample: INT8
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT8.h5
+Total patches: 1924
+Using patches: 1924
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT8_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT8_barcodes.csv
+Embedding shape:  (1924, 2560)
+
+Processing sample: INT7
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT7.h5
+Total patches: 2361
+Using patches: 2361
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT7_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT7_barcodes.csv
+Embedding shape:  (2361, 2560)
+
+Processing sample: INT6
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT6.h5
+Total patches: 1667
+Using patches: 1667
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT6_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT6_barcodes.csv
+Embedding shape:  (1667, 2560)
+
+Processing sample: INT5
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT5.h5
+Total patches: 1158
+Using patches: 1158
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT5_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT5_barcodes.csv
+Embedding shape:  (1158, 2560)
+
+Processing sample: INT4
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT4.h5
+Total patches: 1255
+Using patches: 1255
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT4_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT4_barcodes.csv
+Embedding shape:  (1255, 2560)
+
+Processing sample: INT3
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT3.h5
+Total patches: 1973
+Using patches: 1973
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT3_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT3_barcodes.csv
+Embedding shape:  (1973, 2560)
+
+Processing sample: INT2
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT2.h5
+Total patches: 2541
+Using patches: 2541
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT2_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT2_barcodes.csv
+Embedding shape:  (2541, 2560)
+
+Processing sample: INT1
+Patch file: /media/rokny/DATA2/Elsa/vcell/datasets/hest_ccrcc/patches/INT1.h5
+Total patches: 1032
+Using patches: 1032
+Image shape: (224, 224, 3)
+Saved embeddings: /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT1_virchow.npz
+Saved barcodes:   /media/rokny/DATA2/Elsa/vcell/features/virchow_hest_ccrcc/INT1_barcodes.csv
+Embedding shape:  (1032, 2560)

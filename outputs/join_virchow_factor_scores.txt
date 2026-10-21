@@ -4,7 +4,7 @@ Factor table: (74220, 8)
 0      INT1  AAACAGAGCGACTCCT-1  ...  0.612598      -0.167058
 1      INT1  AAACCACTACACAGAT-1  ...  0.315746       0.440550
 2      INT1  AAACGACAGTCTTGCC-1  ...  0.790063       0.298626
-3      INT1  AAACGAGACGGTTGAT-1  ...  0.925799       0.170545
+3      INT1  AAACGAGACGGTTGAT-1  ...  0.925800       0.170545
 4      INT1  AAACGCCCGAGATCGG-1  ...  1.492832      -0.040126
 
 [5 rows x 8 columns]
@@ -135,5 +135,5 @@ DONE
 X: (73813, 2560)
 y: (73813, 4)
 metadata: (73813, 10)
-Saved: /media/bml/DATA2/Elsa/vcell/features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_dataset.npz
-Saved: /media/bml/DATA2/Elsa/vcell/features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_metadata.csv
+Saved: /media/rokny/DATA2/Elsa/vcell/features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_dataset.npz
+Saved: /media/rokny/DATA2/Elsa/vcell/features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_metadata.csv
