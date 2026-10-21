@@ -1,0 +1,25 @@
+sample_id,patient,technology,fixed_split,cv_fold
+INT1,Patient 24,frozen,train,2
+INT2,Patient 23,frozen,val,0
+INT3,Patient 22,frozen,train,3
+INT4,Patient 21,frozen,train,3
+INT5,Patient 20,frozen,train,2
+INT6,Patient 19,frozen,train,0
+INT7,Patient 18,frozen,val,5
+INT8,Patient 17,frozen,train,1
+INT9,Patient 16,frozen,test,4
+INT10,Patient 15,frozen,train,4
+INT11,Patient 14,frozen,test,5
+INT12,Patient 13,frozen,train,1
+INT13,Patient 12,ffpe,test,0
+INT14,Patient 11,ffpe,train,4
+INT15,Patient 10,ffpe,train,0
+INT16,Patient 9,ffpe,val,1
+INT17,Patient 8,ffpe,train,2
+INT18,Patient 7,ffpe,test,5
+INT19,Patient 6,ffpe,train,5
+INT20,Patient 5,ffpe,train,1
+INT21,Patient 4,ffpe,train,4
+INT22,Patient 3,ffpe,val,3
+INT23,Patient 2,ffpe,train,3
+INT24,Patient 1,ffpe,train,2
