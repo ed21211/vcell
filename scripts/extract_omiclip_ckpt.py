@@ -50,12 +50,23 @@ def prepare_patch(array):
     return Image.fromarray(np.clip(array, 0, 255).astype(np.uint8)).convert("RGB")
 
 
+def blur_to_resolution(image, source_um_per_px, target_um_per_px):
+    """Make a patch look as if it had been cut from a coarser image: shrink to the target pixel size
+    (bicubic, antialiased) and stretch back to the original size with bicubic, which is what
+    prepare_response_cohort.py does to the SpaceRanger crops."""
+    resample = getattr(Image, "Resampling", Image).BICUBIC
+    width, height = image.size
+    small = max(8, int(round(width * source_um_per_px / target_um_per_px)))
+    return image.resize((small, small), resample).resize((width, height), resample)
+
+
 class SpotDataset(Dataset):
-    def __init__(self, pairs, preprocess):
+    def __init__(self, pairs, preprocess, blur=None):
         self.paths = pairs["patch_h5_path"].astype(str).tolist()
         self.index = pairs["patch_index"].astype(int).to_numpy()
         self.sentences = pairs["gene_sentence"].fillna("").astype(str).tolist()
         self.preprocess = preprocess
+        self.blur = blur  # (source um/px, target um/px) or None
         self._handles = {}
 
     def __len__(self):
@@ -66,7 +77,10 @@ class SpotDataset(Dataset):
         if path not in self._handles:
             self._handles[path] = h5py.File(path, "r")
         array = self._handles[path]["img"][int(self.index[i])]
-        return self.preprocess(prepare_patch(array)), self.sentences[i]
+        image = prepare_patch(array)
+        if self.blur:
+            image = blur_to_resolution(image, *self.blur)
+        return self.preprocess(image), self.sentences[i]
 
 
 def load_finetuned(model, path):
@@ -97,6 +111,11 @@ def main():
     p.add_argument("--num-workers", type=int, default=8)
     p.add_argument("--fp32", action="store_true", help="no autocast (the original extraction was fp32)")
     p.add_argument("--max-rows", type=int, default=None, help="small test subset")
+    p.add_argument("--blur-um-per-px", type=float, default=None,
+                   help="blur the patches to this pixel size before embedding (the kidney cohort images are about "
+                        "3.43 um/px); used to train Stage 1 heads on images as blurry as the target cohort")
+    p.add_argument("--source-um-per-px", type=float, default=0.5,
+                   help="pixel size of the patches as stored (HEST: about 0.5); only used with --blur-um-per-px")
     args = p.parse_args()
 
     if not torch.cuda.is_available():
@@ -120,7 +139,11 @@ def main():
         load_finetuned(model, args.finetuned)
     model.eval()
 
-    loader = DataLoader(SpotDataset(pairs, preprocess), batch_size=args.batch_size, shuffle=False,
+    blur = (args.source_um_per_px, args.blur_um_per_px) if args.blur_um_per_px else None
+    if blur:
+        side = max(8, int(round(224 * blur[0] / blur[1])))
+        print(f"Blurring patches: {blur[0]} -> {blur[1]} um/px (a 224 px patch is shrunk to {side} px and stretched back)")
+    loader = DataLoader(SpotDataset(pairs, preprocess, blur), batch_size=args.batch_size, shuffle=False,
                         num_workers=args.num_workers, pin_memory=True, persistent_workers=args.num_workers > 0)
     amp_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
     n = len(pairs)
@@ -161,6 +184,7 @@ def main():
         out.create_dataset("sample_id", data=pairs["sample_id"].astype(str).to_numpy(dtype=object), dtype=string)
         out.create_dataset("barcode", data=pairs["barcode"].astype(str).to_numpy(dtype=object), dtype=string)
         out.attrs["pairs_file"] = str(args.pairs)
+        out.attrs["blur_um_per_px"] = float(args.blur_um_per_px or 0.0)
         out.attrs["base_checkpoint"] = str(args.base_checkpoint)
         out.attrs["finetuned_checkpoint"] = str(args.finetuned) if args.finetuned else ""
     print(f"Wrote {args.output_h5}  ({n:,} x {dim}) in {(time.time() - start) / 60:.1f} min")
