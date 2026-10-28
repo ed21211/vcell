@@ -31,7 +31,8 @@ Typical use, from the vcell folder:
       --restrict-to outputs/omiclip_factor_baseline/omiclip_factor_metadata.csv
 
 Add --cv-frozen-encoder 6 to either command for the patient-grouped CV.
-Outputs go to outputs/eval/<name>/.
+Outputs go to outputs/eval/<name>/. With --save-predictions the CV also writes
+cv_oof_predictions.csv (used by fuse_predictions.py to average two arms).
 
 Technology-balanced splits (recommended): run scripts/make_splits.py once, then add
 
@@ -767,6 +768,15 @@ def run_cv(x, y, meta, factors, patient_of_sample, args, out_dir, fold_of_sample
         ).reset_index()
         means.insert(1, "factor", "MEAN_OF_FACTORS")
         tech_summary = pd.concat([g, means], ignore_index=True)
+
+    if args.save_predictions:
+        # out-of-fold predictions, so arms can be fused at the prediction level (fuse_predictions.py)
+        pred_df = pd.DataFrame({"sample_id": samples[ok], "barcode_key": meta["barcode_key"].to_numpy()[ok]})
+        for j, name in enumerate(factors):
+            pred_df[f"y_{name}"] = y[ok][:, j]
+            pred_df[f"pred_{name}"] = oof[ok][:, j]
+        pred_df.to_csv(out_dir / "cv_oof_predictions.csv", index=False)
+        print(f"Wrote out-of-fold predictions: {out_dir / 'cv_oof_predictions.csv'}")
 
     per.to_csv(out_dir / "cv_per_sample.csv", index=False)
     pd.DataFrame(fold_rows).to_csv(out_dir / "cv_fold_metrics.csv", index=False)
