@@ -20,6 +20,13 @@ EPOCHS="${1:-3}"
 MODES="${MODES:-single dual}"
 LRS="${LRS:-5e-7 1e-6 2e-6}"
 
+# the home disk on the shared workstation can be full; keep temporary files next to the data
+export TMPDIR="$PWD/outputs/tmp"
+mkdir -p "$TMPDIR"
+
+# same ridge grid as the primary protocol (the best alpha often sits at 1e5, so the grid must go past it)
+ALPHAS=0.1,1,10,100,1000,10000,100000,1000000,10000000,100000000
+
 META=outputs/omiclip_factor_baseline/omiclip_factor_metadata.csv
 RESTRICT=features/hest_ccrcc_joined/hest_ccrcc_virchow2_factor_metadata.csv
 SAMPLES=datasets/hest_metadata/ccrcc_samples.csv
@@ -70,7 +77,7 @@ for MODE in $MODES; do
     for ARM in image st both; do
       python scripts/evaluate_embeddings.py --name "ft_${TAG}_${ARM}" \
         --npz "${ARMS}/ft_${TAG}_${ARM}_factor_dataset.npz" --meta "$META" --restrict-to "$RESTRICT" \
-        --sample-table "$SAMPLES" --split-csv "$SPLITS" --no-mlp --select within \
+        --sample-table "$SAMPLES" --split-csv "$SPLITS" --no-mlp --select within --alphas "$ALPHAS" \
         2>&1 | tee "outputs/ft_logs/${TAG}_eval_${ARM}.log"
     done
   done
